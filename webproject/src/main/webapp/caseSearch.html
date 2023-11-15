@@ -36,23 +36,28 @@ footer {
 </header>
 
 <nav>
-<a href="/webproject/simpleFormInsert.html">Insert Data</a> <br>
+<a href="/webproject/choosePart.html">Back to Choose Part</a> <br>
 </nav>
 
 <section>
 	<h1>User Input</h1>
 	
-	<form action="SimpleFormSearch" method="POST">
-	
-		Chipset: <input type="text" name="keyword"> <br />
-		
-		<input type="submit" value="Search" />
+	<form action="CaseSearch" method="POST">
+		Choose by Case Size
+	  	<input type="checkbox" name="keyword1" value="ATX Mid Tower">
+	  	<label> ATX Mid-Tower</label><br>
+	  	<input type="checkbox" name="keyword2" value="Micro ATX">
+	  	<label> Micro ATX</label><br>
+	  	<input type="submit" value="Submit">
 	</form>
 
 </section>
 
+<!--
 <footer>
 Copyright
 </footer>
+-->
+
 </body>
 </html>

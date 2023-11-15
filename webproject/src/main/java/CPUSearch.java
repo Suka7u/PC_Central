@@ -10,23 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/GPUsearch")
-public class GPUsearch extends HttpServlet {
+@WebServlet("/CPUSearch")
+public class CPUSearch extends HttpServlet {
    private static final long serialVersionUID = 1L;
 
-   public GPUsearch() {
+   public CPUSearch() {
       super();
    }
 
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	  String keyword1 = request.getParameter("keyword1"); // keyword1: AMDRadeon
-      String keyword2 = request.getParameter("keyword2"); // keyword2: NVIDIA
-      String keyword3 = request.getParameter("keyword3"); // keyword3: cheapest to most expensive
-      String keyword4 = request.getParameter("keyword4"); // keyword4: most expensive to cheapest
-      search(keyword1, keyword2, keyword3, keyword4, response);
+	  String keyword1 = request.getParameter("keyword1"); // keyword1: AMD
+      String keyword2 = request.getParameter("keyword2"); // keyword2: Intel
+      search(keyword1, keyword2, response);
    }
 
-   void search(String keyword1, String keyword2, String keyword3, String keyword4, HttpServletResponse response) throws IOException {
+   void search(String keyword1, String keyword2, HttpServletResponse response) throws IOException {
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
       String title = "Database Result";
@@ -52,48 +50,26 @@ public class GPUsearch extends HttpServlet {
       try {
          DBConnection.getDBConnection();
          connection = DBConnection.connection;
-         
-         // DEBUG
-         // out.println("keyword1: " + keyword1 + "<br>");
-         // out.println("keyword2: " + keyword2 + "<br>");
-         // out.println("keyword3: " + keyword3 + "<br>");
-         // out.println("keyword4: " + keyword4 + "<br>");
-         //
-         
-         // 0: no keywords,   1: only keyword 1,   2: only keyword 2,   3: both keywords
-         //int checkVal = 0;
 
          if (!(keyword1 == null) && !(keyword2 == null)) {
         	//checkVal = 3;
-            String selectSQL = "SELECT * FROM gpuTable";
+            String selectSQL = "SELECT * FROM cpuTable";
             preparedStatement = connection.prepareStatement(selectSQL);
          } else {
         	if (!(keyword1 == null)) {
         		//checkVal = 1;
-        		String selectSQL = "SELECT * FROM gpuTable WHERE CHIPSET LIKE ?";
-                String chip_set = "%" + keyword1 + "%";
+        		String selectSQL = "SELECT * FROM cpuTable WHERE PRODUCT_NAME LIKE ?";
+                String product_name = keyword1 + "%";
                 preparedStatement = connection.prepareStatement(selectSQL);
-                preparedStatement.setString(1, chip_set);
+                preparedStatement.setString(1, product_name);
         	} else if (!(keyword2 == null)) {
         		//checkVal = 2;
-        		String selectSQL = "SELECT * FROM gpuTable WHERE CHIPSET LIKE ?";
-                String chip_set = "%" + keyword2 + "%";
+        		String selectSQL = "SELECT * FROM cpuTable WHERE PRODUCT_NAME LIKE ?";
+                String product_name = keyword2 + "%";
                 preparedStatement = connection.prepareStatement(selectSQL);
-                preparedStatement.setString(1, chip_set);
+                preparedStatement.setString(1, product_name);
         	}
          }
-         
-         /*
-         // Print cheapest to most expensive
-         if (keyword3 != null) {
-        	 String selectSQL = "SELECT * FROM gpuTable";
-        	 preparedStatement = connection.prepareStatement(selectSQL);
-         }
-         */
-
-      // DEBUG
-         // out.println("checkVal: " + checkVal + "<br>");
-      //
          
          ResultSet rs = preparedStatement.executeQuery();
          
@@ -102,36 +78,33 @@ public class GPUsearch extends HttpServlet {
          out.println("<tr>");
          out.println("<th>ID</th>");
          out.println("<th>Product Name</th>");
-         out.println("<th>Manufacturer</th>");
-         out.println("<th>Chipset</th>");
-         out.println("<th>Memory</th>");
-         out.println("<th>Size</th>");
+         out.println("<th>Model name</th>");
+         out.println("<th>Core Count</th>");
+         out.println("<th>TDP Wattage</th>");
          out.println("<th>Price</th>");
          out.println("</tr>");
 
          while (rs.next()) {
             int id = rs.getInt("id");
             String productName = rs.getString("PRODUCT_NAME").trim();
-            String manufacturer = rs.getString("MANUFACTURER").trim();
-            String chipSet = rs.getString("CHIPSET").trim();
-            String memory = rs.getString("MEMORY").trim();
-            String size = rs.getString("SIZE").trim();
+            String modelName = rs.getString("MODEL_NAME").trim();
+            String coreCount = rs.getString("CORE_COUNT").trim();
+            String tdpWattage = rs.getString("TDP_WATTAGE").trim();
             String price = rs.getString("PRICE").trim();
             
             out.println("<tr>");
             out.println("<td>" + id + "</td>");
             out.println("<td>" + productName + "</td>");
-            out.println("<td>" + manufacturer + "</td>");
-            out.println("<td>" + chipSet + "</td>");
-            out.println("<td>" + memory + "</td>");
-            out.println("<td>" + size + "</td>");
+            out.println("<td>" + modelName + "</td>");
+            out.println("<td>" + coreCount + "</td>");
+            out.println("<td>" + tdpWattage + "</td>");
             out.println("<td>" + price + "</td>");
             out.println("</tr>");
          }
          
          out.println("</table>");
          
-         out.println("<a href=/webproject/gpuSearch.html>Search Data</a> <br>");
+         out.println("<a href=/webproject/cpuSearch.html>Search Data</a> <br>");
          out.println("</body></html>");
          rs.close();
          preparedStatement.close();
