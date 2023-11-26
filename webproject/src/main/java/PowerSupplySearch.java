@@ -21,11 +21,12 @@ public class PowerSupplySearch extends HttpServlet {
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	  String keyword1 = request.getParameter("keyword1"); // keyword1: Corsair
       String keyword2 = request.getParameter("keyword2"); // keyword2: EVGA
-      String keyword3 = request.getParameter("keyword3"); // keyword2: Bo Guo, email me a funny meme if you found this message sanjaygiriprakash@unomaha.edu
-      search(keyword1, keyword2, keyword3, response);
+      String keyword3 = request.getParameter("keyword3"); // keyword3: Thermaltake
+      String keywordPrice = request.getParameter("keywordPrice"); // keywordPrice: price
+      search(keyword1, keyword2, keyword3, keywordPrice, response);
    }
 
-   void search(String keyword1, String keyword2, String keyword3, HttpServletResponse response) throws IOException {
+   void search(String keyword1, String keyword2, String keyword3, String keywordPrice, HttpServletResponse response) throws IOException {
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
       String title = "Database Result";
@@ -83,15 +84,21 @@ public class PowerSupplySearch extends HttpServlet {
                  String modular = rs.getString("MODULAR").trim();
                  String price = rs.getString("PRICE").trim();
                  
-                 out.println("<tr>");
-                 out.println("<td>" + id + "</td>");
-                 out.println("<td>" + productName + "</td>");
-                 out.println("<td>" + manufacturer + "</td>");
-                 out.println("<td>" + efficiency + "</td>");
-                 out.println("<td>" + wattage + "</td>");
-                 out.println("<td>" + modular + "</td>");
-                 out.println("<td>" + price + "</td>");
-                 out.println("</tr>");
+                 String actualPrice = price.substring(1); // Removing the leading '$'
+                 float integerPrice = Float.parseFloat(actualPrice);
+                 float sliderPrice = Float.parseFloat(keywordPrice);
+                 
+                 if (integerPrice < sliderPrice) {
+	                 out.println("<tr>");
+	                 out.println("<td>" + id + "</td>");
+	                 out.println("<td>" + productName + "</td>");
+	                 out.println("<td>" + manufacturer + "</td>");
+	                 out.println("<td>" + efficiency + "</td>");
+	                 out.println("<td>" + wattage + "</td>");
+	                 out.println("<td>" + modular + "</td>");
+	                 out.println("<td>" + price + "</td>");
+	                 out.println("</tr>");
+                 }
               }
              
              out.println("</table>");
@@ -132,16 +139,22 @@ public class PowerSupplySearch extends HttpServlet {
                  String wattage = rs.getString("WATTAGE").trim();
                  String modular = rs.getString("MODULAR").trim();
                  String price = rs.getString("PRICE").trim();
-
-                 out.println("<tr>");
-                 out.println("<td>" + id + "</td>");
-                 out.println("<td>" + productName + "</td>");
-                 out.println("<td>" + manufacturer + "</td>");
-                 out.println("<td>" + efficiency + "</td>");
-                 out.println("<td>" + wattage + "</td>");
-                 out.println("<td>" + modular + "</td>");
-                 out.println("<td>" + price + "</td>");
-                 out.println("</tr>");
+                 
+                 String actualPrice = price.substring(1); // Removing the leading '$'
+                 float integerPrice = Float.parseFloat(actualPrice);
+                 float sliderPrice = Float.parseFloat(keywordPrice);
+                 
+                 if (integerPrice < sliderPrice) {
+	                 out.println("<tr>");
+	                 out.println("<td>" + id + "</td>");
+	                 out.println("<td>" + productName + "</td>");
+	                 out.println("<td>" + manufacturer + "</td>");
+	                 out.println("<td>" + efficiency + "</td>");
+	                 out.println("<td>" + wattage + "</td>");
+	                 out.println("<td>" + modular + "</td>");
+	                 out.println("<td>" + price + "</td>");
+	                 out.println("</tr>");
+                 }
               }
              
              rs.close();
@@ -159,15 +172,21 @@ public class PowerSupplySearch extends HttpServlet {
                  String modular = rs.getString("MODULAR").trim();
                  String price = rs.getString("PRICE").trim();
 
-                 out.println("<tr>");
-                 out.println("<td>" + id + "</td>");
-                 out.println("<td>" + productName + "</td>");
-                 out.println("<td>" + manufacturer + "</td>");
-                 out.println("<td>" + efficiency + "</td>");
-                 out.println("<td>" + wattage + "</td>");
-                 out.println("<td>" + modular + "</td>");
-                 out.println("<td>" + price + "</td>");
-                 out.println("</tr>");
+                 String actualPrice = price.substring(1); // Removing the leading '$'
+                 float integerPrice = Float.parseFloat(actualPrice);
+                 float sliderPrice = Float.parseFloat(keywordPrice);
+                 
+                 if (integerPrice < sliderPrice) {
+	                 out.println("<tr>");
+	                 out.println("<td>" + id + "</td>");
+	                 out.println("<td>" + productName + "</td>");
+	                 out.println("<td>" + manufacturer + "</td>");
+	                 out.println("<td>" + efficiency + "</td>");
+	                 out.println("<td>" + wattage + "</td>");
+	                 out.println("<td>" + modular + "</td>");
+	                 out.println("<td>" + price + "</td>");
+	                 out.println("</tr>");
+                 }
               }
              
              out.println("</table>");
@@ -209,15 +228,21 @@ public class PowerSupplySearch extends HttpServlet {
                  String modular = rs.getString("MODULAR").trim();
                  String price = rs.getString("PRICE").trim();
 
-                 out.println("<tr>");
-                 out.println("<td>" + id + "</td>");
-                 out.println("<td>" + productName + "</td>");
-                 out.println("<td>" + manufacturer + "</td>");
-                 out.println("<td>" + efficiency + "</td>");
-                 out.println("<td>" + wattage + "</td>");
-                 out.println("<td>" + modular + "</td>");
-                 out.println("<td>" + price + "</td>");
-                 out.println("</tr>");
+                 String actualPrice = price.substring(1); // Removing the leading '$'
+                 float integerPrice = Float.parseFloat(actualPrice);
+                 float sliderPrice = Float.parseFloat(keywordPrice);
+                 
+                 if (integerPrice < sliderPrice) {
+	                 out.println("<tr>");
+	                 out.println("<td>" + id + "</td>");
+	                 out.println("<td>" + productName + "</td>");
+	                 out.println("<td>" + manufacturer + "</td>");
+	                 out.println("<td>" + efficiency + "</td>");
+	                 out.println("<td>" + wattage + "</td>");
+	                 out.println("<td>" + modular + "</td>");
+	                 out.println("<td>" + price + "</td>");
+	                 out.println("</tr>");
+                 }
               }
              
              rs.close();
@@ -235,15 +260,21 @@ public class PowerSupplySearch extends HttpServlet {
                  String modular = rs.getString("MODULAR").trim();
                  String price = rs.getString("PRICE").trim();
 
-                 out.println("<tr>");
-                 out.println("<td>" + id + "</td>");
-                 out.println("<td>" + productName + "</td>");
-                 out.println("<td>" + manufacturer + "</td>");
-                 out.println("<td>" + efficiency + "</td>");
-                 out.println("<td>" + wattage + "</td>");
-                 out.println("<td>" + modular + "</td>");
-                 out.println("<td>" + price + "</td>");
-                 out.println("</tr>");
+                 String actualPrice = price.substring(1); // Removing the leading '$'
+                 float integerPrice = Float.parseFloat(actualPrice);
+                 float sliderPrice = Float.parseFloat(keywordPrice);
+                 
+                 if (integerPrice < sliderPrice) {
+	                 out.println("<tr>");
+	                 out.println("<td>" + id + "</td>");
+	                 out.println("<td>" + productName + "</td>");
+	                 out.println("<td>" + manufacturer + "</td>");
+	                 out.println("<td>" + efficiency + "</td>");
+	                 out.println("<td>" + wattage + "</td>");
+	                 out.println("<td>" + modular + "</td>");
+	                 out.println("<td>" + price + "</td>");
+	                 out.println("</tr>");
+                 }
               }
              
              out.println("</table>");
@@ -285,15 +316,21 @@ public class PowerSupplySearch extends HttpServlet {
                  String modular = rs.getString("MODULAR").trim();
                  String price = rs.getString("PRICE").trim();
 
-                 out.println("<tr>");
-                 out.println("<td>" + id + "</td>");
-                 out.println("<td>" + productName + "</td>");
-                 out.println("<td>" + manufacturer + "</td>");
-                 out.println("<td>" + efficiency + "</td>");
-                 out.println("<td>" + wattage + "</td>");
-                 out.println("<td>" + modular + "</td>");
-                 out.println("<td>" + price + "</td>");
-                 out.println("</tr>");
+                 String actualPrice = price.substring(1); // Removing the leading '$'
+                 float integerPrice = Float.parseFloat(actualPrice);
+                 float sliderPrice = Float.parseFloat(keywordPrice);
+                 
+                 if (integerPrice < sliderPrice) {
+	                 out.println("<tr>");
+	                 out.println("<td>" + id + "</td>");
+	                 out.println("<td>" + productName + "</td>");
+	                 out.println("<td>" + manufacturer + "</td>");
+	                 out.println("<td>" + efficiency + "</td>");
+	                 out.println("<td>" + wattage + "</td>");
+	                 out.println("<td>" + modular + "</td>");
+	                 out.println("<td>" + price + "</td>");
+	                 out.println("</tr>");
+                 }
               }
              
              rs.close();
@@ -311,15 +348,21 @@ public class PowerSupplySearch extends HttpServlet {
                  String modular = rs.getString("MODULAR").trim();
                  String price = rs.getString("PRICE").trim();
 
-                 out.println("<tr>");
-                 out.println("<td>" + id + "</td>");
-                 out.println("<td>" + productName + "</td>");
-                 out.println("<td>" + manufacturer + "</td>");
-                 out.println("<td>" + efficiency + "</td>");
-                 out.println("<td>" + wattage + "</td>");
-                 out.println("<td>" + modular + "</td>");
-                 out.println("<td>" + price + "</td>");
-                 out.println("</tr>");
+                 String actualPrice = price.substring(1); // Removing the leading '$'
+                 float integerPrice = Float.parseFloat(actualPrice);
+                 float sliderPrice = Float.parseFloat(keywordPrice);
+                 
+                 if (integerPrice < sliderPrice) {
+	                 out.println("<tr>");
+	                 out.println("<td>" + id + "</td>");
+	                 out.println("<td>" + productName + "</td>");
+	                 out.println("<td>" + manufacturer + "</td>");
+	                 out.println("<td>" + efficiency + "</td>");
+	                 out.println("<td>" + wattage + "</td>");
+	                 out.println("<td>" + modular + "</td>");
+	                 out.println("<td>" + price + "</td>");
+	                 out.println("</tr>");
+                 }
               }
              
              out.println("</table>");
@@ -360,15 +403,21 @@ public class PowerSupplySearch extends HttpServlet {
                  String modular = rs.getString("MODULAR").trim();
                  String price = rs.getString("PRICE").trim();
 
-                 out.println("<tr>");
-                 out.println("<td>" + id + "</td>");
-                 out.println("<td>" + productName + "</td>");
-                 out.println("<td>" + manufacturer + "</td>");
-                 out.println("<td>" + efficiency + "</td>");
-                 out.println("<td>" + wattage + "</td>");
-                 out.println("<td>" + modular + "</td>");
-                 out.println("<td>" + price + "</td>");
-                 out.println("</tr>");
+                 String actualPrice = price.substring(1); // Removing the leading '$'
+                 float integerPrice = Float.parseFloat(actualPrice);
+                 float sliderPrice = Float.parseFloat(keywordPrice);
+                 
+                 if (integerPrice < sliderPrice) {
+	                 out.println("<tr>");
+	                 out.println("<td>" + id + "</td>");
+	                 out.println("<td>" + productName + "</td>");
+	                 out.println("<td>" + manufacturer + "</td>");
+	                 out.println("<td>" + efficiency + "</td>");
+	                 out.println("<td>" + wattage + "</td>");
+	                 out.println("<td>" + modular + "</td>");
+	                 out.println("<td>" + price + "</td>");
+	                 out.println("</tr>");
+                 }
               }
              
              out.println("</table>");
@@ -409,15 +458,21 @@ public class PowerSupplySearch extends HttpServlet {
                  String modular = rs.getString("MODULAR").trim();
                  String price = rs.getString("PRICE").trim();
 
-                 out.println("<tr>");
-                 out.println("<td>" + id + "</td>");
-                 out.println("<td>" + productName + "</td>");
-                 out.println("<td>" + manufacturer + "</td>");
-                 out.println("<td>" + efficiency + "</td>");
-                 out.println("<td>" + wattage + "</td>");
-                 out.println("<td>" + modular + "</td>");
-                 out.println("<td>" + price + "</td>");
-                 out.println("</tr>");
+                 String actualPrice = price.substring(1); // Removing the leading '$'
+                 float integerPrice = Float.parseFloat(actualPrice);
+                 float sliderPrice = Float.parseFloat(keywordPrice);
+                 
+                 if (integerPrice < sliderPrice) {
+	                 out.println("<tr>");
+	                 out.println("<td>" + id + "</td>");
+	                 out.println("<td>" + productName + "</td>");
+	                 out.println("<td>" + manufacturer + "</td>");
+	                 out.println("<td>" + efficiency + "</td>");
+	                 out.println("<td>" + wattage + "</td>");
+	                 out.println("<td>" + modular + "</td>");
+	                 out.println("<td>" + price + "</td>");
+	                 out.println("</tr>");
+                 }
               }
              
              out.println("</table>");
@@ -458,15 +513,21 @@ public class PowerSupplySearch extends HttpServlet {
                  String modular = rs.getString("MODULAR").trim();
                  String price = rs.getString("PRICE").trim();
 
-                 out.println("<tr>");
-                 out.println("<td>" + id + "</td>");
-                 out.println("<td>" + productName + "</td>");
-                 out.println("<td>" + manufacturer + "</td>");
-                 out.println("<td>" + efficiency + "</td>");
-                 out.println("<td>" + wattage + "</td>");
-                 out.println("<td>" + modular + "</td>");
-                 out.println("<td>" + price + "</td>");
-                 out.println("</tr>");
+                 String actualPrice = price.substring(1); // Removing the leading '$'
+                 float integerPrice = Float.parseFloat(actualPrice);
+                 float sliderPrice = Float.parseFloat(keywordPrice);
+                 
+                 if (integerPrice < sliderPrice) {
+	                 out.println("<tr>");
+	                 out.println("<td>" + id + "</td>");
+	                 out.println("<td>" + productName + "</td>");
+	                 out.println("<td>" + manufacturer + "</td>");
+	                 out.println("<td>" + efficiency + "</td>");
+	                 out.println("<td>" + wattage + "</td>");
+	                 out.println("<td>" + modular + "</td>");
+	                 out.println("<td>" + price + "</td>");
+	                 out.println("</tr>");
+                 }
               }
              
              out.println("</table>");

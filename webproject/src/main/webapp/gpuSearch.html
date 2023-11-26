@@ -42,13 +42,28 @@ footer {
 <section>
 	<h1>User Input</h1>
 	
-	<form action="GPUsearch" method="POST">
-		Choose a Chipset(s)
+	<form action="GPUSearch" method="POST">
+		Choose by Product Name
 	  	<input type="checkbox" name="keyword1" value="AMD Radeon">
 	  	<label> AMD Radeon</label><br>
 	  	<input type="checkbox" name="keyword2" value="NVIDIA">
 	  	<label> NVIDIA</label><br>
 	  	<input type="submit" value="Submit">
+	  	
+	  	<div class="slidecontainer">
+			<p>Choose By Price: $<span id="demo"></span>.00</p>
+		  	<input type="range" name="keywordPrice" min="0" max="800" value="400" step="10" class="slider" id="myRange">
+		</div>
+		
+		<script>
+			var slider = document.getElementById("myRange");
+			var output = document.getElementById("demo");
+			output.innerHTML = slider.value;
+		
+			slider.oninput = function() {
+		  	output.innerHTML = this.value;
+			}
+		</script>
 	</form>
 
 </section>

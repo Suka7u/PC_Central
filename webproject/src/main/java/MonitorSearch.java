@@ -22,10 +22,11 @@ public class MonitorSearch extends HttpServlet {
 	  String keyword1 = request.getParameter("keyword1"); // keyword1: 1080p
       String keyword2 = request.getParameter("keyword2"); // keyword2: 2K
       String keyword3 = request.getParameter("keyword3"); // keyword2: 4K
-      search(keyword1, keyword2, keyword3, response);
+      String keywordPrice = request.getParameter("keywordPrice"); // keywordPrice: price
+      search(keyword1, keyword2, keyword3, keywordPrice, response);
    }
 
-   void search(String keyword1, String keyword2, String keyword3, HttpServletResponse response) throws IOException {
+   void search(String keyword1, String keyword2, String keyword3, String keywordPrice, HttpServletResponse response) throws IOException {
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
       String title = "Database Result";
@@ -85,16 +86,22 @@ public class MonitorSearch extends HttpServlet {
                 String panelType = rs.getString("PANEL_TYPE").trim();
                 String price = rs.getString("PRICE").trim();
                 
-                out.println("<tr>");
-                out.println("<td>" + id + "</td>");
-                out.println("<td>" + productName + "</td>");
-                out.println("<td>" + manufacturer + "</td>");
-                out.println("<td>" + size + "</td>");
-                out.println("<td>" + resolution + "</td>");
-                out.println("<td>" + refreshRate + "</td>");
-                out.println("<td>" + panelType + "</td>");
-                out.println("<td>" + price + "</td>");
-                out.println("</tr>");
+                String actualPrice = price.substring(1); // Removing the leading '$'
+                float integerPrice = Float.parseFloat(actualPrice);
+                float sliderPrice = Float.parseFloat(keywordPrice);
+                
+                if (integerPrice < sliderPrice) {
+	                out.println("<tr>");
+	                out.println("<td>" + id + "</td>");
+	                out.println("<td>" + productName + "</td>");
+	                out.println("<td>" + manufacturer + "</td>");
+	                out.println("<td>" + size + "</td>");
+	                out.println("<td>" + resolution + "</td>");
+	                out.println("<td>" + refreshRate + "</td>");
+	                out.println("<td>" + panelType + "</td>");
+	                out.println("<td>" + price + "</td>");
+	                out.println("</tr>");
+                }
              }
              
              out.println("</table>");
@@ -138,16 +145,22 @@ public class MonitorSearch extends HttpServlet {
                  String panelType = rs.getString("PANEL_TYPE").trim();
                  String price = rs.getString("PRICE").trim();
                  
-                 out.println("<tr>");
-                 out.println("<td>" + id + "</td>");
-                 out.println("<td>" + productName + "</td>");
-                 out.println("<td>" + manufacturer + "</td>");
-                 out.println("<td>" + size + "</td>");
-                 out.println("<td>" + resolution + "</td>");
-                 out.println("<td>" + refreshRate + "</td>");
-                 out.println("<td>" + panelType + "</td>");
-                 out.println("<td>" + price + "</td>");
-                 out.println("</tr>");
+                 String actualPrice = price.substring(1); // Removing the leading '$'
+                 float integerPrice = Float.parseFloat(actualPrice);
+                 float sliderPrice = Float.parseFloat(keywordPrice);
+                 
+                 if (integerPrice < sliderPrice) {
+ 	                out.println("<tr>");
+ 	                out.println("<td>" + id + "</td>");
+ 	                out.println("<td>" + productName + "</td>");
+ 	                out.println("<td>" + manufacturer + "</td>");
+ 	                out.println("<td>" + size + "</td>");
+ 	                out.println("<td>" + resolution + "</td>");
+ 	                out.println("<td>" + refreshRate + "</td>");
+ 	                out.println("<td>" + panelType + "</td>");
+ 	                out.println("<td>" + price + "</td>");
+ 	                out.println("</tr>");
+                 }
               }
              
              rs.close();
@@ -166,16 +179,22 @@ public class MonitorSearch extends HttpServlet {
                  String panelType = rs.getString("PANEL_TYPE").trim();
                  String price = rs.getString("PRICE").trim();
                  
-                 out.println("<tr>");
-                 out.println("<td>" + id + "</td>");
-                 out.println("<td>" + productName + "</td>");
-                 out.println("<td>" + manufacturer + "</td>");
-                 out.println("<td>" + size + "</td>");
-                 out.println("<td>" + resolution + "</td>");
-                 out.println("<td>" + refreshRate + "</td>");
-                 out.println("<td>" + panelType + "</td>");
-                 out.println("<td>" + price + "</td>");
-                 out.println("</tr>");
+                 String actualPrice = price.substring(1); // Removing the leading '$'
+                 float integerPrice = Float.parseFloat(actualPrice);
+                 float sliderPrice = Float.parseFloat(keywordPrice);
+                 
+                 if (integerPrice < sliderPrice) {
+ 	                out.println("<tr>");
+ 	                out.println("<td>" + id + "</td>");
+ 	                out.println("<td>" + productName + "</td>");
+ 	                out.println("<td>" + manufacturer + "</td>");
+ 	                out.println("<td>" + size + "</td>");
+ 	                out.println("<td>" + resolution + "</td>");
+ 	                out.println("<td>" + refreshRate + "</td>");
+ 	                out.println("<td>" + panelType + "</td>");
+ 	                out.println("<td>" + price + "</td>");
+ 	                out.println("</tr>");
+                 }
               }
              
              out.println("</table>");
@@ -219,16 +238,22 @@ public class MonitorSearch extends HttpServlet {
                  String panelType = rs.getString("PANEL_TYPE").trim();
                  String price = rs.getString("PRICE").trim();
                  
-                 out.println("<tr>");
-                 out.println("<td>" + id + "</td>");
-                 out.println("<td>" + productName + "</td>");
-                 out.println("<td>" + manufacturer + "</td>");
-                 out.println("<td>" + size + "</td>");
-                 out.println("<td>" + resolution + "</td>");
-                 out.println("<td>" + refreshRate + "</td>");
-                 out.println("<td>" + panelType + "</td>");
-                 out.println("<td>" + price + "</td>");
-                 out.println("</tr>");
+                 String actualPrice = price.substring(1); // Removing the leading '$'
+                 float integerPrice = Float.parseFloat(actualPrice);
+                 float sliderPrice = Float.parseFloat(keywordPrice);
+                 
+                 if (integerPrice < sliderPrice) {
+ 	                out.println("<tr>");
+ 	                out.println("<td>" + id + "</td>");
+ 	                out.println("<td>" + productName + "</td>");
+ 	                out.println("<td>" + manufacturer + "</td>");
+ 	                out.println("<td>" + size + "</td>");
+ 	                out.println("<td>" + resolution + "</td>");
+ 	                out.println("<td>" + refreshRate + "</td>");
+ 	                out.println("<td>" + panelType + "</td>");
+ 	                out.println("<td>" + price + "</td>");
+ 	                out.println("</tr>");
+                 }
               }
              
              rs.close();
@@ -247,16 +272,22 @@ public class MonitorSearch extends HttpServlet {
                  String panelType = rs.getString("PANEL_TYPE").trim();
                  String price = rs.getString("PRICE").trim();
                  
-                 out.println("<tr>");
-                 out.println("<td>" + id + "</td>");
-                 out.println("<td>" + productName + "</td>");
-                 out.println("<td>" + manufacturer + "</td>");
-                 out.println("<td>" + size + "</td>");
-                 out.println("<td>" + resolution + "</td>");
-                 out.println("<td>" + refreshRate + "</td>");
-                 out.println("<td>" + panelType + "</td>");
-                 out.println("<td>" + price + "</td>");
-                 out.println("</tr>");
+                 String actualPrice = price.substring(1); // Removing the leading '$'
+                 float integerPrice = Float.parseFloat(actualPrice);
+                 float sliderPrice = Float.parseFloat(keywordPrice);
+                 
+                 if (integerPrice < sliderPrice) {
+ 	                out.println("<tr>");
+ 	                out.println("<td>" + id + "</td>");
+ 	                out.println("<td>" + productName + "</td>");
+ 	                out.println("<td>" + manufacturer + "</td>");
+ 	                out.println("<td>" + size + "</td>");
+ 	                out.println("<td>" + resolution + "</td>");
+ 	                out.println("<td>" + refreshRate + "</td>");
+ 	                out.println("<td>" + panelType + "</td>");
+ 	                out.println("<td>" + price + "</td>");
+ 	                out.println("</tr>");
+                 }
               }
              
              out.println("</table>");
@@ -300,16 +331,22 @@ public class MonitorSearch extends HttpServlet {
                  String panelType = rs.getString("PANEL_TYPE").trim();
                  String price = rs.getString("PRICE").trim();
                  
-                 out.println("<tr>");
-                 out.println("<td>" + id + "</td>");
-                 out.println("<td>" + productName + "</td>");
-                 out.println("<td>" + manufacturer + "</td>");
-                 out.println("<td>" + size + "</td>");
-                 out.println("<td>" + resolution + "</td>");
-                 out.println("<td>" + refreshRate + "</td>");
-                 out.println("<td>" + panelType + "</td>");
-                 out.println("<td>" + price + "</td>");
-                 out.println("</tr>");
+                 String actualPrice = price.substring(1); // Removing the leading '$'
+                 float integerPrice = Float.parseFloat(actualPrice);
+                 float sliderPrice = Float.parseFloat(keywordPrice);
+                 
+                 if (integerPrice < sliderPrice) {
+ 	                out.println("<tr>");
+ 	                out.println("<td>" + id + "</td>");
+ 	                out.println("<td>" + productName + "</td>");
+ 	                out.println("<td>" + manufacturer + "</td>");
+ 	                out.println("<td>" + size + "</td>");
+ 	                out.println("<td>" + resolution + "</td>");
+ 	                out.println("<td>" + refreshRate + "</td>");
+ 	                out.println("<td>" + panelType + "</td>");
+ 	                out.println("<td>" + price + "</td>");
+ 	                out.println("</tr>");
+                 }
               }
              
              rs.close();
@@ -328,16 +365,22 @@ public class MonitorSearch extends HttpServlet {
                  String panelType = rs.getString("PANEL_TYPE").trim();
                  String price = rs.getString("PRICE").trim();
                  
-                 out.println("<tr>");
-                 out.println("<td>" + id + "</td>");
-                 out.println("<td>" + productName + "</td>");
-                 out.println("<td>" + manufacturer + "</td>");
-                 out.println("<td>" + size + "</td>");
-                 out.println("<td>" + resolution + "</td>");
-                 out.println("<td>" + refreshRate + "</td>");
-                 out.println("<td>" + panelType + "</td>");
-                 out.println("<td>" + price + "</td>");
-                 out.println("</tr>");
+                 String actualPrice = price.substring(1); // Removing the leading '$'
+                 float integerPrice = Float.parseFloat(actualPrice);
+                 float sliderPrice = Float.parseFloat(keywordPrice);
+                 
+                 if (integerPrice < sliderPrice) {
+ 	                out.println("<tr>");
+ 	                out.println("<td>" + id + "</td>");
+ 	                out.println("<td>" + productName + "</td>");
+ 	                out.println("<td>" + manufacturer + "</td>");
+ 	                out.println("<td>" + size + "</td>");
+ 	                out.println("<td>" + resolution + "</td>");
+ 	                out.println("<td>" + refreshRate + "</td>");
+ 	                out.println("<td>" + panelType + "</td>");
+ 	                out.println("<td>" + price + "</td>");
+ 	                out.println("</tr>");
+                 }
               }
              
              out.println("</table>");
@@ -380,16 +423,22 @@ public class MonitorSearch extends HttpServlet {
                  String panelType = rs.getString("PANEL_TYPE").trim();
                  String price = rs.getString("PRICE").trim();
                  
-                 out.println("<tr>");
-                 out.println("<td>" + id + "</td>");
-                 out.println("<td>" + productName + "</td>");
-                 out.println("<td>" + manufacturer + "</td>");
-                 out.println("<td>" + size + "</td>");
-                 out.println("<td>" + resolution + "</td>");
-                 out.println("<td>" + refreshRate + "</td>");
-                 out.println("<td>" + panelType + "</td>");
-                 out.println("<td>" + price + "</td>");
-                 out.println("</tr>");
+                 String actualPrice = price.substring(1); // Removing the leading '$'
+                 float integerPrice = Float.parseFloat(actualPrice);
+                 float sliderPrice = Float.parseFloat(keywordPrice);
+                 
+                 if (integerPrice < sliderPrice) {
+ 	                out.println("<tr>");
+ 	                out.println("<td>" + id + "</td>");
+ 	                out.println("<td>" + productName + "</td>");
+ 	                out.println("<td>" + manufacturer + "</td>");
+ 	                out.println("<td>" + size + "</td>");
+ 	                out.println("<td>" + resolution + "</td>");
+ 	                out.println("<td>" + refreshRate + "</td>");
+ 	                out.println("<td>" + panelType + "</td>");
+ 	                out.println("<td>" + price + "</td>");
+ 	                out.println("</tr>");
+                 }
               }
              
              out.println("</table>");
@@ -432,16 +481,22 @@ public class MonitorSearch extends HttpServlet {
                  String panelType = rs.getString("PANEL_TYPE").trim();
                  String price = rs.getString("PRICE").trim();
                  
-                 out.println("<tr>");
-                 out.println("<td>" + id + "</td>");
-                 out.println("<td>" + productName + "</td>");
-                 out.println("<td>" + manufacturer + "</td>");
-                 out.println("<td>" + size + "</td>");
-                 out.println("<td>" + resolution + "</td>");
-                 out.println("<td>" + refreshRate + "</td>");
-                 out.println("<td>" + panelType + "</td>");
-                 out.println("<td>" + price + "</td>");
-                 out.println("</tr>");
+                 String actualPrice = price.substring(1); // Removing the leading '$'
+                 float integerPrice = Float.parseFloat(actualPrice);
+                 float sliderPrice = Float.parseFloat(keywordPrice);
+                 
+                 if (integerPrice < sliderPrice) {
+ 	                out.println("<tr>");
+ 	                out.println("<td>" + id + "</td>");
+ 	                out.println("<td>" + productName + "</td>");
+ 	                out.println("<td>" + manufacturer + "</td>");
+ 	                out.println("<td>" + size + "</td>");
+ 	                out.println("<td>" + resolution + "</td>");
+ 	                out.println("<td>" + refreshRate + "</td>");
+ 	                out.println("<td>" + panelType + "</td>");
+ 	                out.println("<td>" + price + "</td>");
+ 	                out.println("</tr>");
+                 }
               }
              
              out.println("</table>");
@@ -484,16 +539,22 @@ public class MonitorSearch extends HttpServlet {
                  String panelType = rs.getString("PANEL_TYPE").trim();
                  String price = rs.getString("PRICE").trim();
                  
-                 out.println("<tr>");
-                 out.println("<td>" + id + "</td>");
-                 out.println("<td>" + productName + "</td>");
-                 out.println("<td>" + manufacturer + "</td>");
-                 out.println("<td>" + size + "</td>");
-                 out.println("<td>" + resolution + "</td>");
-                 out.println("<td>" + refreshRate + "</td>");
-                 out.println("<td>" + panelType + "</td>");
-                 out.println("<td>" + price + "</td>");
-                 out.println("</tr>");
+                 String actualPrice = price.substring(1); // Removing the leading '$'
+                 float integerPrice = Float.parseFloat(actualPrice);
+                 float sliderPrice = Float.parseFloat(keywordPrice);
+                 
+                 if (integerPrice < sliderPrice) {
+ 	                out.println("<tr>");
+ 	                out.println("<td>" + id + "</td>");
+ 	                out.println("<td>" + productName + "</td>");
+ 	                out.println("<td>" + manufacturer + "</td>");
+ 	                out.println("<td>" + size + "</td>");
+ 	                out.println("<td>" + resolution + "</td>");
+ 	                out.println("<td>" + refreshRate + "</td>");
+ 	                out.println("<td>" + panelType + "</td>");
+ 	                out.println("<td>" + price + "</td>");
+ 	                out.println("</tr>");
+                 }
               }
              
              out.println("</table>");

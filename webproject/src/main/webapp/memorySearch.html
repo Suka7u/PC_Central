@@ -51,6 +51,21 @@ footer {
 	  	<input type="checkbox" name="keyword3" value="64">
 	  	<label> 64GB</label><br>
 	  	<input type="submit" value="Submit">
+	  	
+	  	<div class="slidecontainer">
+			<p>Choose By Price: $<span id="demo"></span>.00</p>
+		  	<input type="range" name="keywordPrice" min="0" max="300" value="150" step="10" class="slider" id="myRange">
+		</div>
+		
+		<script>
+			var slider = document.getElementById("myRange");
+			var output = document.getElementById("demo");
+			output.innerHTML = slider.value;
+		
+			slider.oninput = function() {
+		  	output.innerHTML = this.value;
+			}
+		</script>
 	</form>
 
 </section>

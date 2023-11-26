@@ -21,10 +21,11 @@ public class CPUCoolerSearch extends HttpServlet {
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	  String keyword1 = request.getParameter("keyword1"); // keyword1: Air
       String keyword2 = request.getParameter("keyword2"); // keyword2: Water
-      search(keyword1, keyword2, response);
+      String keywordPrice = request.getParameter("keywordPrice"); // keywordPrice: price
+      search(keyword1, keyword2, keywordPrice, response);
    }
 
-   void search(String keyword1, String keyword2, HttpServletResponse response) throws IOException {
+   void search(String keyword1, String keyword2, String keywordPrice, HttpServletResponse response) throws IOException {
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
       String title = "Database Result";
@@ -92,14 +93,20 @@ public class CPUCoolerSearch extends HttpServlet {
             String rpm = rs.getString("RPM").trim();
             String price = rs.getString("PRICE").trim();
             
-            out.println("<tr>");
-            out.println("<td>" + id + "</td>");
-            out.println("<td>" + productName + "</td>");
-            out.println("<td>" + manufacturer + "</td>");
-            out.println("<td>" + airOrWater + "</td>");
-            out.println("<td>" + rpm + "</td>");
-            out.println("<td>" + price + "</td>");
-            out.println("</tr>");
+            String actualPrice = price.substring(1); // Removing the leading '$'
+            float integerPrice = Float.parseFloat(actualPrice);
+            float sliderPrice = Float.parseFloat(keywordPrice);
+            
+            if (integerPrice < sliderPrice) {
+	            out.println("<tr>");
+	            out.println("<td>" + id + "</td>");
+	            out.println("<td>" + productName + "</td>");
+	            out.println("<td>" + manufacturer + "</td>");
+	            out.println("<td>" + airOrWater + "</td>");
+	            out.println("<td>" + rpm + "</td>");
+	            out.println("<td>" + price + "</td>");
+	            out.println("</tr>");
+            }
          }
          
          out.println("</table>");
