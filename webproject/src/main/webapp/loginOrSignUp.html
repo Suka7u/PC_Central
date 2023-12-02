@@ -42,6 +42,13 @@ function AlertMessage() {
 	
 	
 }
+
+function LoginAlert() {
+	var checkValue = sessionStorage.getItem("checkValue");
+	if (checkValue === "1"){
+		window.onload = alert("There is no account with this username.");
+	}
+}
 </script>
 
 </head>
@@ -62,7 +69,7 @@ function AlertMessage() {
 	<form action="LoginIfValid" method="POST">
 		<label>Login: </label>
 		<input type="text" name="username">
-		<input type="submit" name="submitUsername" value="Submit">
+		<input type="submit" name="submitUsername" value="Submit" onclick="LoginAlert()">
 	</form>
 	
 	<label>Make an Account</label>
