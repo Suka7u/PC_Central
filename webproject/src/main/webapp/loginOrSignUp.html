@@ -1,0 +1,86 @@
+<html>
+<head>
+<style>
+header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;	 
+}
+nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:300px;
+    width:100px;
+    float:left;
+    padding:5px;	      
+}
+section {
+    width:350px;
+    float:left;
+    padding:10px;	 	 
+}
+footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;	 	 
+}
+</style>
+
+<script>
+function AlertMessage() {
+	/*
+  	// const params = new URLSearchParams("?checkVal=0");
+  	const params = new URLSearchParams(window.location.search);
+  	const theCheckVal = params.get("checkVal");
+  	
+	if (theCheckVal === "0") { // username not already taken
+		window.onload = alert(theCheckVal + "Account successfully created!!!");
+	} else {
+		window.onload = alert(theCheckVal + "Sorry! The username you entered is already taken. Please try again!!!");
+	}
+	*/
+	window.onload = alert(localStorage.getItem("checkValue"));
+}
+</script>
+
+</head>
+
+<body>
+<header>
+<h1> Search Parts </h1>
+</header>
+
+<nav>
+<a href="/webproject/choosePart.html">Back to Choose Part</a> <br>
+</nav>
+
+<section>
+	<h1>Home Page</h1>
+	
+	<label>Already have an account?</label>
+	<form action="LoginIfValid" method="POST">
+		<label>Login: </label>
+		<input type="text" name="username">
+		<input type="submit" name="submitUsername" value="Submit">
+	</form>
+	
+	<label>Make an Account</label>
+	<form action="AddUsernameIfValid" method="POST">
+		<label>Sign Up: </label>
+		<input type="text" name="username">
+		<input type="submit" name="submitUsername" value="Submit" onclick="AlertMessage()">
+	</form>
+
+</section>
+
+<!--
+<footer>
+Copyright
+</footer>
+-->
+
+</body>
+</html>

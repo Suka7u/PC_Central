@@ -31,27 +31,39 @@ public class CaseSearch extends HttpServlet {
       String title = "Database Result";
       String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + //
             "transitional//en\">\n"; //
-      out.println(docType + //
-    		  "<html>\n" + //
-              "<head><title>" + title + "</title>\n" + //
-              "<style>table {\n" + //
-              "border-collapse: collapse;\n" + //
-              "}\n" + //
-              "td, th {\n" + //
-              "border: 1px solid black;\n" + //
-              "text-align: left;\n" + //
-              "padding: 10px;\n" + //
-              "}</style>\n" + //
-              "</head>\n" + //
-              "<body bgcolor=\"#f0f0f0\">\n" + //
-              "<h1 align=\"center\">" + title + "</h1>\n");
 
       Connection connection = null;
       PreparedStatement preparedStatement = null;
       try {
          DBConnection.getDBConnection();
          connection = DBConnection.connection;
-
+         
+         out.println(docType + //
+       		  "<html>\n" + //
+                 "<head><title>" + title + "</title>\n" + //
+                 "<style>table {\n" + //
+                 "border-collapse: collapse;\n" + //
+                 "}\n" + //
+                 "td, th {\n" + //
+                 "border: 1px solid black;\n" + //
+                 "text-align: left;\n" + //
+                 "padding: 10px;\n" + //
+                 "}</style>\n" + //
+                 "<script>function addPart() {\n" + //
+                 
+				 "int id = rs.getInt(\"id\");\n" + //
+                 String productName = rs.getString("PRODUCT_NAME").trim();
+                 
+                 "String insertSql = \"INSERT INTO userBuildsTable (id, USERNAME, CPU, CPUCOOLER, MOTHERBOARD, MEMORY, STORAGE, GPU, PCCASE, POWERSUPPLY, MONITOR) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\";" + //
+                 "PreparedStatement preparedStmt = connection.prepareStatement(insertSql);" + //
+                 "preparedStmt.setString(8, productName);" + //
+                 "preparedStmt.execute();" + //
+                 "}" + //
+                 "</script>\n" + //
+                 "</head>\n" + //
+                 "<body bgcolor=\"#f0f0f0\">\n" + //
+                 "<h1 align=\"center\">" + title + "</h1>\n");
+         
          if (!(keyword1 == null) && !(keyword2 == null)) {
         	//checkVal = 3;
             String selectSQL = "SELECT * FROM caseTable";
@@ -84,6 +96,7 @@ public class CaseSearch extends HttpServlet {
          out.println("<th>Fans</th>");
          out.println("<th>RGB</th>");
          out.println("<th>Price</th>");
+         out.println("<th></th>");
          out.println("</tr>");
 
          while (rs.next()) {
@@ -108,6 +121,9 @@ public class CaseSearch extends HttpServlet {
                 out.println("<td>" + fans + "</td>");
                 out.println("<td>" + rgb + "</td>");
                 out.println("<td>" + price + "</td>");
+                out.println("<td><a href=\"/webproject/createNewBuild.html\" onclick=\"addPart();\">Add Part</a></td>");
+                
+                
                 out.println("</tr>");
             }
          }
