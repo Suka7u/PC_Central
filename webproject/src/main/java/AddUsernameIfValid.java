@@ -74,15 +74,13 @@ public class AddUsernameIfValid extends HttpServlet {
 			            "<head><title>" + title + "</title>\n" + //
 			            "</head>\n" + //
 			            "<body>\n" + //
-			            "<script>location.href = \"/webproject/loginOrSignUp.html?checkVal=1\"</script>\n" + //
-			            // "<script>document.cookie = \"checkValue=1\";\n" + //
-			            // "<script>document.cookie = \"1\"\n" + //
-			            // "<script>var loginOrSignUpPage = window.open(\"/webproject/loginOrSignUp.html\");\n" + //
-			            // "loginOrSignUpPage.onload = function() {\n" + //
-			            // "<script>window.onload = function() {\n" + //
-			            //"sessionStorage.setItem(\"checkValue\", " + checkVal + ")}\n" + //
-			            //"loginOrSignUpPage.onload = alert(localStorage.getItem(\"checkValue\"));\n" + //
-			            // "</script>\n" + //
+			            "<script>\n" + //
+			            "var checkValue = \"1\"\n" + //
+			            "sessionStorage.setItem(\"checkValue\", checkValue)\n" + //
+			            "</script>\n" + //
+
+			            "<script>location.href = \"/webproject/loginOrSignUp.html\"</script>\n" + //
+
 		        	"</body>\n" + //
 			            "</html>");
              		
@@ -112,19 +110,12 @@ public class AddUsernameIfValid extends HttpServlet {
 			            "</head>\n" + //
 			            "<body>\n" + //
 			            "<script>\n" + //
-			            "window.onload = function() {\n" + //
-			            "localStorage.setItem(\"checkValue\", \"Username added successfully.\");\n" + //
-			            "}\n" + //
+			            "var checkValue = \"0\"\n" + //
+			            "sessionStorage.setItem(\"checkValue\", checkValue)\n" + //
 			            "</script>\n" + //
-			            //"<script>location.href = \"/webproject/loginOrSignUp.html?checkVal=0\"</script>\n" + //
-			            // "<script>document.cookie = \"checkValue=0\";\n" + //
-			            // "<script>document.cookie = \"0\"\n" + //
-			            // "<script>var loginOrSignUpPage = window.open(\"/webproject/loginOrSignUp.html\");\n" + //
-			            // "loginOrSignUpPage.onload = function() {\n" + //
-			            // "<script>window.onload = function() {\n" + //
-			            //"sessionStorage.setItem(\"checkValue\", " + checkVal + ")}\n" + //
-			            //"loginOrSignUpPage.onload = alert(localStorage.getItem(\"checkValue\"));\n" + //
-			            // "</script>\n" + //
+
+			            "<script>location.href = \"/webproject/loginOrSignUp.html\"</script>\n" + //
+
 		        	"</body>\n" + //
 			            "</html>");
              

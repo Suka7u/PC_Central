@@ -1,3 +1,4 @@
+
 <html>
 <head>
 <style>
@@ -31,18 +32,15 @@ footer {
 
 <script>
 function AlertMessage() {
-	/*
-  	// const params = new URLSearchParams("?checkVal=0");
-  	const params = new URLSearchParams(window.location.search);
-  	const theCheckVal = params.get("checkVal");
-  	
-	if (theCheckVal === "0") { // username not already taken
-		window.onload = alert(theCheckVal + "Account successfully created!!!");
+	var checkValue = sessionStorage.getItem("checkValue");
+	if (checkValue === "1"){
+		window.onload = alert("Account successfully created!!!");
+	
 	} else {
-		window.onload = alert(theCheckVal + "Sorry! The username you entered is already taken. Please try again!!!");
+		window.onload = alert("Sorry! The username you entered is already taken. Please try again!!!");
 	}
-	*/
-	window.onload = alert(localStorage.getItem("checkValue"));
+	
+	
 }
 </script>
 
