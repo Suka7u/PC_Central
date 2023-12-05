@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Cookie;
 
 @WebServlet("/LoginIfValid")
 public class LoginIfValid extends HttpServlet {
@@ -70,14 +71,17 @@ public class LoginIfValid extends HttpServlet {
 						"var checkValue = \"1\"\n" + //
 						"sessionStorage.setItem(\"checkValue\", checkValue)\n" + //
 			            
-			            "var userName = " + username + " \n" + //
-			            "sessionStorage.setItem(\"userName\", userName)\n" + //
+			            // "var userName = " + username + " \n" + //
+			            // "sessionStorage.setItem(\"userName\", userName)\n" + //
 			            "</script>\n" + //
 
 			            "<script>location.href = \"/webproject/homePage.html\"</script>\n" + //
 
 		        	"</body>\n" + //
 			            "</html>");
+    		 
+    		 Cookie usernameCookie=new Cookie("username",username);//creating cookie object  
+    		 response.addCookie(usernameCookie);//adding cookie in the response  
              		
          } else { // username DNE in the table
         	 

@@ -1,3 +1,4 @@
+
 <html>
 <head>
 <style>
@@ -28,6 +29,29 @@ footer {
     padding:5px;	 	 
 }
 </style>
+
+<script>
+function LoginCheck() {
+	let username = document.cookie;
+	const myArray = username.split("=");
+	let word = myArray[1];
+	
+	const userWord = word.split(";");
+	let usernameWord = userWord[0];
+	
+	if(typeof word === "undefined"){
+		location.href = "/webproject/loginOrSignUp.html";
+		window.onload = alert("Please Login!");
+
+	} else {
+		window.onload = alert("You are signed in as: " + usernameWord);
+	}
+	
+	
+}
+	
+</script>
+
 </head>
 
 <body>
@@ -47,7 +71,7 @@ footer {
 	<a href="/webproject/yourSavedBuilds.html">Your Saved Builds</a> <br>
 	<a href="/webproject/completedBuilds.html">Completed Builds</a> <br>
 	<form action="AddRowInUserBuildsTable" method="POST" on>
-		<input type="submit" name="keyword1" value="Create a New Build">
+		<input type="submit" name="keyword1" value="Create a New Build" onclick="LoginCheck()">
 
 	</form>
 

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Cookie;
 
 @WebServlet("/AddRowInUserBuildsTable")
 public class AddRowInUserBuildsTable extends HttpServlet {
@@ -19,17 +20,22 @@ public class AddRowInUserBuildsTable extends HttpServlet {
    }
 
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      addRow(response);
+      addRow(request, response);
    }
 
-   void addRow(HttpServletResponse response) throws IOException {
+   void addRow(HttpServletRequest request, HttpServletResponse response) throws IOException {
       PrintWriter out = response.getWriter();
 
       Connection connection = null;
       PreparedStatement preparedStatement = null;
       
-      // FIXME: FIGURE OUT HOW TO GET THE USERNAME FROM THE LOGIN SESSION IN HTML
-      String username = "Sanjay";
+    
+	// FIXME: FIGURE OUT HOW TO GET THE USERNAME FROM THE LOGIN SESSION IN HTML
+      //if(request.getCookies() == null) {
+    	  //window.location.href = "/webproject/loginOrSignUp.html";
+      //}
+      Cookie usernames[]=request.getCookies();  
+      String username = usernames[0].getValue();
       String insertSQL = "INSERT INTO userBuildsTable (id, USERNAME, CPU, CPUCOOLER, MOTHERBOARD, MEMORY, STORAGE, GPU, PCCASE, POWERSUPPLY, MONITOR) VALUES (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
       
       try {
@@ -49,6 +55,23 @@ public class AddRowInUserBuildsTable extends HttpServlet {
          preparedStmt.setString(10, "");
          
          preparedStmt.execute();
+         
+
+         
+         String getID = "SELECT MAX(id) FROM userBuildsTable";
+
+         preparedStatement = connection.prepareStatement(getID);
+ 
+         ResultSet rs = preparedStatement.executeQuery();
+
+         rs.next();
+         int lastid = rs.getInt(1);
+
+         // out.println(lastid);
+         String ID = String.valueOf(lastid);//Now it will return "10" 
+         
+         Cookie idCookie=new Cookie("ID",ID);//creating cookie object  
+		 response.addCookie(idCookie);//adding cookie in the response 
          
          preparedStmt.close();
          connection.close();
