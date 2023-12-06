@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Cookie;
 
-@WebServlet("/CPUSearch")
-public class CPUSearch extends HttpServlet {
+@WebServlet("/AddProductName")
+public class AddProductName extends HttpServlet {
    private static final long serialVersionUID = 1L;
 
-   public CPUSearch() {
+   public AddProductName() {
       super();
    }
 
@@ -46,9 +46,6 @@ public class CPUSearch extends HttpServlet {
               "</head>\n" + //
               "<body bgcolor=\"#f0f0f0\">\n" + //
               "<h1 align=\"center\">" + title + "</h1>\n");
-      
-      Cookie partTypeCookie = new Cookie("partType","cpu");
-      response.addCookie(partTypeCookie);
 
       Connection connection = null;
       PreparedStatement preparedStatement = null;
@@ -102,15 +99,7 @@ public class CPUSearch extends HttpServlet {
             float sliderPrice = Float.parseFloat(keywordPrice);
             
             if (integerPrice < sliderPrice) {
-	            
-	            //out.println("productName = " + productName + "\n");
-            	
-            	// out.println(productName.getClass());
-            	
-            	Cookie productNameCookie = new Cookie("productName",productName);
-            	//Cookie productNameCookie = new Cookie("productName","nameOfProduct");
-                response.addCookie(productNameCookie);
-
+                
                 /*
                 Cookie cookies[] = request.getCookies();
                 String idFromCookie = cookies[1].getValue();
@@ -129,17 +118,13 @@ public class CPUSearch extends HttpServlet {
 	            out.println("<td>" + price + "</td>");
 	            
 	            //out.println("<td><a href=\"/webproject/createNewBuild.html\" onclick=\"addPart();\">Add Part</a></td>");
-	            //out.println("</tr>");
-	            
 	            out.println("<td>");
 	            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
 	            out.println("<input type=\"submit\" name=\"keyword1\" value=\"Add Part\">");
 	            out.println("</form>");
 	            out.println("</td>");
+	            
 	            out.println("</tr>");
-	            
-	            //out.println("<td> <form action=\"AddProductName\" method=\"POST\" on> <input type=\"submit\" name=\"keyword1\" value=\"Add Part\"> </form> </td> </tr>");
-	            
             }
          }
          

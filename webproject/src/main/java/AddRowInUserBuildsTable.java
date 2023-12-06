@@ -34,6 +34,22 @@ public class AddRowInUserBuildsTable extends HttpServlet {
       //if(request.getCookies() == null) {
     	  //window.location.href = "/webproject/loginOrSignUp.html";
       //}
+      
+      if (request.getCookies() == null) {
+    	  String title = "Database Result";
+          String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + //
+                "transitional//en\">\n"; //
+          
+          out.println(docType + //
+    	  		  "<html>\n" + //
+    	            "<head><title>" + title + "</title>\n" + //
+    	            "</head>\n" + //
+    	            "<body>\n" + //
+    	            "<script>\n" + //
+    	            "location.href = \"/webproject/loginOrSignUp.html\"\n" + //
+    	            "</script>\n");
+      }
+      
       Cookie usernames[]=request.getCookies();  
       String username = usernames[0].getValue();
       String insertSQL = "INSERT INTO userBuildsTable (id, USERNAME, CPU, CPUCOOLER, MOTHERBOARD, MEMORY, STORAGE, GPU, PCCASE, POWERSUPPLY, MONITOR) VALUES (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -75,16 +91,8 @@ public class AddRowInUserBuildsTable extends HttpServlet {
          
          preparedStmt.close();
          connection.close();
-        
-         String title = "Database Result";
-         String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + //
-               "transitional//en\">\n"; //
          
-         out.println(docType + //
-	  		  "<html>\n" + //
-	            "<head><title>" + title + "</title>\n" + //
-	            "</head>\n" + //
-	            "<body>\n" + //
+         out.println(
 	            "<script>location.href = \"/webproject/createNewBuild.html\"</script>\n" + //
          		"</body>\n" + //
 	            "</html>");
