@@ -38,10 +38,34 @@ footer {
 			let cookie = cookieArray[i];
 			const myArray = cookie.split("=");
 			var word = myArray[0];
-			if (word.trim() == "CPU") {
+			if (word.trim() == "cpu") {
 				document.getElementById("cpuPart").innerHTML = myArray[1];
-				break;
-			}
+				
+			} else if (word.trim() == "cpucooler"){
+				document.getElementById("cpucoolerPart").innerHTML = myArray[1];
+				
+			} else if (word.trim() == "gpu"){
+				document.getElementById("gpuPart").innerHTML = myArray[1];
+				
+			} else if (word.trim() == "memory"){
+				document.getElementById("memoryPart").innerHTML = myArray[1];
+				
+			} else if (word.trim() == "motherboard"){
+				document.getElementById("motherboardPart").innerHTML = myArray[1];
+				
+			} else if (word.trim() == "storage"){
+				document.getElementById("storagePart").innerHTML = myArray[1];
+				
+			} else if (word.trim() == "powersupply"){
+				document.getElementById("powerSupplyPart").innerHTML = myArray[1];
+				
+			} else if (word.trim() == "case"){
+				document.getElementById("casePart").innerHTML = myArray[1];
+				
+			} else if (word.trim() == "monitor"){
+				document.getElementById("monitorPart").innerHTML = myArray[1];
+				
+			} 
 		}
 	}
 </script>
@@ -61,6 +85,33 @@ footer {
 	<form action="PrintProductName" method="POST">
 		<a href="/webproject/cpuSearch.html">Add a CPU</a> <br>
 		<p id="cpuPart"></p>
+		
+		<a href="/webproject/cpuCoolerSearch.html">Add a CPU Cooler</a> <br>
+		<p id="cpucoolerPart"></p>
+		
+		<a href="/webproject/gpuSearch.html">Add a GPU</a> <br>
+		<p id="gpuPart"></p>
+		
+		<a href="/webproject/memorySearch.html">Add Memory</a> <br>
+		<p id="memoryPart"></p>
+		
+		<a href="/webproject/motherboardSearch.html">Add a Motherboard</a> <br>
+		<p id="motherboardPart"></p>
+		
+		<a href="/webproject/storageSearch.html">Add Storage</a> <br>
+		<p id="storagePart"></p>
+		
+		<a href="/webproject/powerSupplySearch.html">Add a Power Supply</a> <br>
+		<p id="powerSupplyPart"></p>
+		
+		<a href="/webproject/caseSearch.html">Add a Case</a> <br>
+		<p id="casePart"></p>
+		
+		<a href="/webproject/monitorSearch.html">Add a Monitor</a> <br>
+		<p id="monitorPart"></p>
+		
+		
+		
 	</form>
 
 </section>

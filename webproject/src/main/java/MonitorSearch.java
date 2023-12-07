@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,7 +47,10 @@ public class MonitorSearch extends HttpServlet {
               "</head>\n" + //
               "<body bgcolor=\"#f0f0f0\">\n" + //
               "<h1 align=\"center\">" + title + "</h1>\n");
-
+      
+      Cookie partTypeCookie = new Cookie("partType","monitor");
+      response.addCookie(partTypeCookie);
+      
       Connection connection = null;
       PreparedStatement preparedStatement = null;
       try {
@@ -101,6 +105,13 @@ public class MonitorSearch extends HttpServlet {
 	                out.println("<td>" + panelType + "</td>");
 	                out.println("<td>" + price + "</td>");
 	                out.println("</tr>");
+	                
+	                out.println("<td>");
+		            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+		            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+		            out.println("</form>");
+		            out.println("</td>");
+		            out.println("</tr>");
                 }
              }
              
@@ -160,6 +171,13 @@ public class MonitorSearch extends HttpServlet {
  	                out.println("<td>" + panelType + "</td>");
  	                out.println("<td>" + price + "</td>");
  	                out.println("</tr>");
+ 	                
+ 	                out.println("<td>");
+		            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+		            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+		            out.println("</form>");
+		            out.println("</td>");
+		            out.println("</tr>");
                  }
               }
              
@@ -194,6 +212,13 @@ public class MonitorSearch extends HttpServlet {
  	                out.println("<td>" + panelType + "</td>");
  	                out.println("<td>" + price + "</td>");
  	                out.println("</tr>");
+ 	                
+ 	                out.println("<td>");
+		            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+		            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+		            out.println("</form>");
+		            out.println("</td>");
+		            out.println("</tr>");
                  }
               }
              
@@ -253,6 +278,13 @@ public class MonitorSearch extends HttpServlet {
  	                out.println("<td>" + panelType + "</td>");
  	                out.println("<td>" + price + "</td>");
  	                out.println("</tr>");
+ 	                
+ 	                out.println("<td>");
+		            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+		            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+		            out.println("</form>");
+		            out.println("</td>");
+		            out.println("</tr>");
                  }
               }
              
@@ -287,6 +319,13 @@ public class MonitorSearch extends HttpServlet {
  	                out.println("<td>" + panelType + "</td>");
  	                out.println("<td>" + price + "</td>");
  	                out.println("</tr>");
+ 	                
+ 	                out.println("<td>");
+		            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+		            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+		            out.println("</form>");
+		            out.println("</td>");
+		            out.println("</tr>");
                  }
               }
              
@@ -346,6 +385,13 @@ public class MonitorSearch extends HttpServlet {
  	                out.println("<td>" + panelType + "</td>");
  	                out.println("<td>" + price + "</td>");
  	                out.println("</tr>");
+ 	                
+ 	                out.println("<td>");
+		            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+		            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+		            out.println("</form>");
+		            out.println("</td>");
+		            out.println("</tr>");
                  }
               }
              
@@ -380,6 +426,13 @@ public class MonitorSearch extends HttpServlet {
  	                out.println("<td>" + panelType + "</td>");
  	                out.println("<td>" + price + "</td>");
  	                out.println("</tr>");
+ 	                
+ 	                out.println("<td>");
+		            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+		            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+		            out.println("</form>");
+		            out.println("</td>");
+		            out.println("</tr>");
                  }
               }
              
@@ -438,6 +491,13 @@ public class MonitorSearch extends HttpServlet {
  	                out.println("<td>" + panelType + "</td>");
  	                out.println("<td>" + price + "</td>");
  	                out.println("</tr>");
+ 	                
+ 	                out.println("<td>");
+		            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+		            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+		            out.println("</form>");
+		            out.println("</td>");
+		            out.println("</tr>");
                  }
               }
              
@@ -496,6 +556,13 @@ public class MonitorSearch extends HttpServlet {
  	                out.println("<td>" + panelType + "</td>");
  	                out.println("<td>" + price + "</td>");
  	                out.println("</tr>");
+ 	                
+ 	                out.println("<td>");
+		            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+		            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+		            out.println("</form>");
+		            out.println("</td>");
+		            out.println("</tr>");
                  }
               }
              
@@ -554,6 +621,13 @@ public class MonitorSearch extends HttpServlet {
  	                out.println("<td>" + panelType + "</td>");
  	                out.println("<td>" + price + "</td>");
  	                out.println("</tr>");
+ 	                
+ 	                out.println("<td>");
+		            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+		            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+		            out.println("</form>");
+		            out.println("</td>");
+		            out.println("</tr>");
                  }
               }
              

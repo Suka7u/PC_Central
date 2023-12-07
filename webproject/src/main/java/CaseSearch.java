@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Cookie;
 
 @WebServlet("/CaseSearch")
 public class CaseSearch extends HttpServlet {
@@ -19,51 +20,42 @@ public class CaseSearch extends HttpServlet {
    }
 
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	  String keyword1 = request.getParameter("keyword1"); // keyword1: ATX Mid Tower
-      String keyword2 = request.getParameter("keyword2"); // keyword2: Micro ATX
-      String keywordPrice = request.getParameter("keywordPrice"); // keywordPrice: price
-      search(keyword1, keyword2, keywordPrice, response);
+	  String keyword1 = request.getParameter("keyword1");
+      String keyword2 = request.getParameter("keyword2");
+      String keywordPrice = request.getParameter("keywordPrice");
+      search(keyword1, keyword2, keywordPrice, response, request);
    }
 
-   void search(String keyword1, String keyword2, String keywordPrice, HttpServletResponse response) throws IOException {
-      response.setContentType("text/html");
-      PrintWriter out = response.getWriter();
-      String title = "Database Result";
-      String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + //
-            "transitional//en\">\n"; //
+   void search(String keyword1, String keyword2, String keywordPrice, HttpServletResponse response, HttpServletRequest request) throws IOException {
+	   response.setContentType("text/html");
+	      PrintWriter out = response.getWriter();
+	      String title = "Database Result";
+	      String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + //
+	            "transitional//en\">\n"; //
+	      out.println(docType + //
+	    		  "<html>\n" + //
+	              "<head><title>" + title + "</title>\n" + //
+	              "<style>table {\n" + //
+	              "border-collapse: collapse;\n" + //
+	              "}\n" + //
+	              "td, th {\n" + //
+	              "border: 1px solid black;\n" + //
+	              "text-align: left;\n" + //
+	              "padding: 10px;\n" + //
+	              "}</style>\n" + //
+	              "</head>\n" + //
+	              "<body bgcolor=\"#f0f0f0\">\n" + //
+	              "<h1 align=\"center\">" + title + "</h1>\n");
+	      
+	    Cookie partTypeCookie = new Cookie("partType","case");
+	    response.addCookie(partTypeCookie);
 
       Connection connection = null;
       PreparedStatement preparedStatement = null;
       try {
          DBConnection.getDBConnection();
          connection = DBConnection.connection;
-         
-         out.println(docType + //
-       		  "<html>\n" + //
-                 "<head><title>" + title + "</title>\n" + //
-                 "<style>table {\n" + //
-                 "border-collapse: collapse;\n" + //
-                 "}\n" + //
-                 "td, th {\n" + //
-                 "border: 1px solid black;\n" + //
-                 "text-align: left;\n" + //
-                 "padding: 10px;\n" + //
-                 "}</style>\n" + //
-                 "<script>function addPart() {\n" + //
-                 
-				 "int id = rs.getInt(\"id\");\n" + //
-                 String productName = rs.getString("PRODUCT_NAME").trim();
-                 
-                 "String insertSql = \"INSERT INTO userBuildsTable (id, USERNAME, CPU, CPUCOOLER, MOTHERBOARD, MEMORY, STORAGE, GPU, PCCASE, POWERSUPPLY, MONITOR) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\";" + //
-                 "PreparedStatement preparedStmt = connection.prepareStatement(insertSql);" + //
-                 "preparedStmt.setString(8, productName);" + //
-                 "preparedStmt.execute();" + //
-                 "}" + //
-                 "</script>\n" + //
-                 "</head>\n" + //
-                 "<body bgcolor=\"#f0f0f0\">\n" + //
-                 "<h1 align=\"center\">" + title + "</h1>\n");
-         
+
          if (!(keyword1 == null) && !(keyword2 == null)) {
         	//checkVal = 3;
             String selectSQL = "SELECT * FROM caseTable";
@@ -72,15 +64,15 @@ public class CaseSearch extends HttpServlet {
         	if (!(keyword1 == null)) {
         		//checkVal = 1;
         		String selectSQL = "SELECT * FROM caseTable WHERE SIZE LIKE ?";
-                String Size = "%" + keyword1 + "%";
+                String size = "%" + keyword1 + "%";
                 preparedStatement = connection.prepareStatement(selectSQL);
-                preparedStatement.setString(1, Size);
+                preparedStatement.setString(1, size);
         	} else if (!(keyword2 == null)) {
         		//checkVal = 2;
-        		String selectSQL = "SELECT * FROM caseTable WHERE SIZE LIKE ?";
-                String Size = "%" + keyword2 + "%";
+        		String selectSQL = "SELECT * FROM caseTable WHERE CHIPSET LIKE ?";
+                String size = "%" + keyword2 + "%";
                 preparedStatement = connection.prepareStatement(selectSQL);
-                preparedStatement.setString(1, Size);
+                preparedStatement.setString(1, size);
         	}
          }
          
@@ -96,14 +88,13 @@ public class CaseSearch extends HttpServlet {
          out.println("<th>Fans</th>");
          out.println("<th>RGB</th>");
          out.println("<th>Price</th>");
-         out.println("<th></th>");
          out.println("</tr>");
 
          while (rs.next()) {
             int id = rs.getInt("id");
             String productName = rs.getString("PRODUCT_NAME").trim();
             String color = rs.getString("COLOR").trim();
-            String size = rs.getString("SIZE").trim();
+            String Size = rs.getString("SIZE").trim();
             String fans = rs.getString("FANS").trim();
             String rgb = rs.getString("RGB").trim();
             String price = rs.getString("PRICE").trim();
@@ -113,18 +104,22 @@ public class CaseSearch extends HttpServlet {
             float sliderPrice = Float.parseFloat(keywordPrice);
             
             if (integerPrice < sliderPrice) {
-            	out.println("<tr>");
-                out.println("<td>" + id + "</td>");
-                out.println("<td>" + productName + "</td>");
-                out.println("<td>" + color + "</td>");
-                out.println("<td>" + size + "</td>");
-                out.println("<td>" + fans + "</td>");
-                out.println("<td>" + rgb + "</td>");
-                out.println("<td>" + price + "</td>");
-                out.println("<td><a href=\"/webproject/createNewBuild.html\" onclick=\"addPart();\">Add Part</a></td>");
-                
-                
-                out.println("</tr>");
+	            out.println("<tr>");
+	            out.println("<td>" + id + "</td>");
+	            out.println("<td>" + productName + "</td>");
+	            out.println("<td>" + color + "</td>");
+	            out.println("<td>" + Size + "</td>");
+	            out.println("<td>" + fans + "</td>");
+	            out.println("<td>" + rgb + "</td>");
+	            out.println("<td>" + price + "</td>");
+	            
+	            out.println("<td>");
+	            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+	            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+	            out.println("</form>");
+	            out.println("</td>");
+	            out.println("</tr>");
+	            
             }
          }
          

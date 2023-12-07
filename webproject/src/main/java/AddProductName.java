@@ -38,7 +38,27 @@ public class AddProductName extends HttpServlet {
 		   connection = DBConnection.connection;
 		   //ResultSet rs = preparedStatement.executeQuery();
 		   
-		   String selectSQL = "SELECT * FROM cpuTable";
+		   //out.println("why are you not working!");
+		   
+		   Cookie allCookies[] = request.getCookies();
+		   
+		   String partType = "";
+		   
+           for (int i = 0; i < allCookies.length; i++ ) {
+        	   String cookieName = allCookies[i].getName();
+        	   if (cookieName.equals("partType")) {
+        		   partType = allCookies[i].getValue();
+        		   //out.println(partType);
+     
+        	   }
+           }
+          
+           //out.println("why are you not working!");
+           
+		   String selectSQL = "SELECT * FROM "+ partType +"Table";
+		   
+		   //out.println("why are you not working!");
+		   
            //String id = keywordID;
            preparedStatement = connection.prepareStatement(selectSQL);
            // preparedStatement.setString(1, id);
@@ -47,36 +67,52 @@ public class AddProductName extends HttpServlet {
            
            String productName = "";
            
+           //out.println(keywordID);
+           
            while(rs.next()) {
         	   int id = rs.getInt("id");
         	   
         	   if(id == Integer.parseInt(keywordID)) {
         		   productName = rs.getString("PRODUCT_NAME").trim();
-        		   // out.println(productName);
+        		   //out.println(productName);
         		   break;
         	   }
            }
            
+           //out.println(productName);
+           
            rs.close();
            preparedStatement.close();
            
-           Cookie cookies[] = request.getCookies();
+           //Cookie cookies[] = request.getCookies();
            // String userID = cookies["id"].getValue();
            
            //String cookieName = keywordID;
            String userID = "";
-           
-           for (int i = 0; i < cookies.length; i++ ) {
-        	   String cookieName = cookies[i].getName();
-        	   if (cookieName.equals("ID")) {
-        		   userID = cookies[i].getValue();
+           	           
+           for (int i = 0; i < allCookies.length; i++ ) {
+        	   String cookieIDName = allCookies[i].getName();
+        	   if (cookieIDName.equals("ID")) {
+        		   userID = allCookies[i].getValue();
         		   // out.println(userID);
         	   }
            }
            
-           // out.println(productName);
+           //out.println(userID);
+           
+           
+           
+           //out.println(productName);
+           
+          String updateSQL;
+           
+           if(partType.equals("case")) {
+        	   updateSQL = "UPDATE userBuildsTable SET pc" + partType + " = ? WHERE id = ? ";
+           } else {
+        	   updateSQL = "UPDATE userBuildsTable SET " + partType + " = ? WHERE id = ? ";
+           }
 
-           String updateSQL = "UPDATE userBuildsTable SET CPU = ? WHERE id = ? ";
+           //String updateSQL = "UPDATE userBuildsTable SET " + partType + " = ? WHERE id = ? ";
            preparedStatement = connection.prepareStatement(updateSQL);
            preparedStatement.setString(1, productName);
            preparedStatement.setString(2, userID);
@@ -85,9 +121,12 @@ public class AddProductName extends HttpServlet {
 	       preparedStatement.close();
 	       connection.close();
 	       
+	       
 	       String title = "Database Result";
-	          String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + //
+	       String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + //
 	                "transitional//en\">\n"; //
+	       
+	       //out.println("why are you not working!");
 	          
 	          out.println(docType + //
 	    	  		  "<html>\n" + //
@@ -96,10 +135,13 @@ public class AddProductName extends HttpServlet {
 	    	            "<body>\n" + //
 	    	            "<script>\n" + //
 	    	            "location.href = \"/webproject/createNewBuild.html\"\n" + //
-	    	            "document.cookie = \"CPU=" + productName + "\";\n" + //
+	    	            "document.cookie = \" " + partType + " =" + productName + "\";\n" + //
 	    	            "</script>\n" + //
 	    	            "</body>\n" + //
 	        		  	"</html>");
+			   
+		   
+		   
 	          
 	    } catch (SQLException se) {
 	       se.printStackTrace();

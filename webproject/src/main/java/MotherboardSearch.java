@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Cookie;
 
 @WebServlet("/MotherboardSearch")
 public class MotherboardSearch extends HttpServlet {
@@ -22,10 +23,10 @@ public class MotherboardSearch extends HttpServlet {
 	  String keyword1 = request.getParameter("keyword1"); // keyword1: Intel
       String keyword2 = request.getParameter("keyword2"); // keyword2: AMD
       String keywordPrice = request.getParameter("keywordPrice"); // keywordPrice: price
-      search(keyword1, keyword2, keywordPrice, response);
+      search(keyword1, keyword2, keywordPrice, response, request);
    }
 
-   void search(String keyword1, String keyword2, String keywordPrice, HttpServletResponse response) throws IOException {
+   void search(String keyword1, String keyword2, String keywordPrice, HttpServletResponse response, HttpServletRequest request) throws IOException {
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
       String title = "Database Result";
@@ -46,6 +47,9 @@ public class MotherboardSearch extends HttpServlet {
               "<body bgcolor=\"#f0f0f0\">\n" + //
               "<h1 align=\"center\">" + title + "</h1>\n");
 
+      Cookie partTypeCookie = new Cookie("partType","motherboard");
+      response.addCookie(partTypeCookie);
+      
       Connection connection = null;
       PreparedStatement preparedStatement = null;
       try {
@@ -111,7 +115,13 @@ public class MotherboardSearch extends HttpServlet {
 	            out.println("<td>" + socket + "</td>");
 	            out.println("<td>" + memory + "</td>");
 	            out.println("<td>" + price + "</td>");
-	            out.println("</tr>");
+	            
+	            out.println("<td>");
+ 	            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+ 	            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+ 	            out.println("</form>");
+ 	            out.println("</td>");
+                out.println("</tr>");
             }
          }
          

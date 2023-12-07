@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Cookie;
 
 @WebServlet("/PowerSupplySearch")
 public class PowerSupplySearch extends HttpServlet {
@@ -23,15 +24,15 @@ public class PowerSupplySearch extends HttpServlet {
       String keyword2 = request.getParameter("keyword2"); // keyword2: EVGA
       String keyword3 = request.getParameter("keyword3"); // keyword3: Thermaltake
       String keywordPrice = request.getParameter("keywordPrice"); // keywordPrice: price
-      search(keyword1, keyword2, keyword3, keywordPrice, response);
+      search(keyword1, keyword2, keyword3, keywordPrice, response, request);
    }
 
-   void search(String keyword1, String keyword2, String keyword3, String keywordPrice, HttpServletResponse response) throws IOException {
+   void search(String keyword1, String keyword2, String keyword3, String keywordPrice, HttpServletResponse response, HttpServletRequest request) throws IOException {
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
       String title = "Database Result";
       String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + //
-            "transitional//en\">\n"; //
+    		  "transitional//en\">\n"; //
       out.println(docType + //
     		  "<html>\n" + //
               "<head><title>" + title + "</title>\n" + //
@@ -46,7 +47,10 @@ public class PowerSupplySearch extends HttpServlet {
               "</head>\n" + //
               "<body bgcolor=\"#f0f0f0\">\n" + //
               "<h1 align=\"center\">" + title + "</h1>\n");
-
+      
+      Cookie partTypeCookie = new Cookie("partType","powersupply");
+      response.addCookie(partTypeCookie);
+      
       Connection connection = null;
       PreparedStatement preparedStatement = null;
       try {
@@ -98,6 +102,13 @@ public class PowerSupplySearch extends HttpServlet {
 	                 out.println("<td>" + modular + "</td>");
 	                 out.println("<td>" + price + "</td>");
 	                 out.println("</tr>");
+	                 
+	                 out.println("<td>");
+	 	            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+	 	            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+	 	            out.println("</form>");
+	 	            out.println("</td>");
+	 	            out.println("</tr>");
                  }
               }
              
@@ -154,6 +165,13 @@ public class PowerSupplySearch extends HttpServlet {
 	                 out.println("<td>" + modular + "</td>");
 	                 out.println("<td>" + price + "</td>");
 	                 out.println("</tr>");
+	                 
+	                 out.println("<td>");
+	 	            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+	 	            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+	 	            out.println("</form>");
+	 	            out.println("</td>");
+	 	            out.println("</tr>");
                  }
               }
              
@@ -185,7 +203,13 @@ public class PowerSupplySearch extends HttpServlet {
 	                 out.println("<td>" + wattage + "</td>");
 	                 out.println("<td>" + modular + "</td>");
 	                 out.println("<td>" + price + "</td>");
-	                 out.println("</tr>");
+	                 
+	                 out.println("<td>");
+	 	            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+	 	            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+	 	            out.println("</form>");
+	 	            out.println("</td>");
+	 	            out.println("</tr>");
                  }
               }
              
@@ -241,7 +265,14 @@ public class PowerSupplySearch extends HttpServlet {
 	                 out.println("<td>" + wattage + "</td>");
 	                 out.println("<td>" + modular + "</td>");
 	                 out.println("<td>" + price + "</td>");
-	                 out.println("</tr>");
+
+	                 
+	                 out.println("<td>");
+	 	            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+	 	            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+	 	            out.println("</form>");
+	 	            out.println("</td>");
+	 	            out.println("</tr>");
                  }
               }
              
@@ -273,7 +304,14 @@ public class PowerSupplySearch extends HttpServlet {
 	                 out.println("<td>" + wattage + "</td>");
 	                 out.println("<td>" + modular + "</td>");
 	                 out.println("<td>" + price + "</td>");
-	                 out.println("</tr>");
+
+	                 
+	                 out.println("<td>");
+	 	            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+	 	            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+	 	            out.println("</form>");
+	 	            out.println("</td>");
+	 	            out.println("</tr>");
                  }
               }
              
@@ -329,7 +367,13 @@ public class PowerSupplySearch extends HttpServlet {
 	                 out.println("<td>" + wattage + "</td>");
 	                 out.println("<td>" + modular + "</td>");
 	                 out.println("<td>" + price + "</td>");
-	                 out.println("</tr>");
+	                 
+	                 out.println("<td>");
+	 	            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+	 	            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+	 	            out.println("</form>");
+	 	            out.println("</td>");
+	 	            out.println("</tr>");
                  }
               }
              
@@ -361,7 +405,13 @@ public class PowerSupplySearch extends HttpServlet {
 	                 out.println("<td>" + wattage + "</td>");
 	                 out.println("<td>" + modular + "</td>");
 	                 out.println("<td>" + price + "</td>");
-	                 out.println("</tr>");
+	                 
+	                 out.println("<td>");
+	 	            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+	 	            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+	 	            out.println("</form>");
+	 	            out.println("</td>");
+	 	            out.println("</tr>");
                  }
               }
              
@@ -416,7 +466,13 @@ public class PowerSupplySearch extends HttpServlet {
 	                 out.println("<td>" + wattage + "</td>");
 	                 out.println("<td>" + modular + "</td>");
 	                 out.println("<td>" + price + "</td>");
-	                 out.println("</tr>");
+	                 
+	                 out.println("<td>");
+	 	            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+	 	            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+	 	            out.println("</form>");
+	 	            out.println("</td>");
+	 	            out.println("</tr>");
                  }
               }
              
@@ -471,7 +527,13 @@ public class PowerSupplySearch extends HttpServlet {
 	                 out.println("<td>" + wattage + "</td>");
 	                 out.println("<td>" + modular + "</td>");
 	                 out.println("<td>" + price + "</td>");
-	                 out.println("</tr>");
+	                 
+	                 out.println("<td>");
+	 	            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+	 	            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+	 	            out.println("</form>");
+	 	            out.println("</td>");
+	 	            out.println("</tr>");
                  }
               }
              
@@ -527,6 +589,13 @@ public class PowerSupplySearch extends HttpServlet {
 	                 out.println("<td>" + modular + "</td>");
 	                 out.println("<td>" + price + "</td>");
 	                 out.println("</tr>");
+	                 
+	                 out.println("<td>");
+	 	            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
+	 	            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
+	 	            out.println("</form>");
+	 	            out.println("</td>");
+	 	            out.println("</tr>");
                  }
               }
              
