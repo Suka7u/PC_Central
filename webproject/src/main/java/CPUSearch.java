@@ -107,9 +107,9 @@ public class CPUSearch extends HttpServlet {
             	
             	// out.println(productName.getClass());
             	
-            	Cookie productNameCookie = new Cookie("productName",productName);
-            	//Cookie productNameCookie = new Cookie("productName","nameOfProduct");
-                response.addCookie(productNameCookie);
+            	// Cookie productNameCookie = new Cookie("productName",productName);
+            	// Cookie productNameCookie = new Cookie("productName","nameOfProduct");
+                // response.addCookie(productNameCookie);
 
                 /*
                 Cookie cookies[] = request.getCookies();
@@ -133,7 +133,7 @@ public class CPUSearch extends HttpServlet {
 	            
 	            out.println("<td>");
 	            out.println("<form action=\"AddProductName\" method=\"POST\" on>");
-	            out.println("<input type=\"submit\" name=\"keyword1\" value=\"Add Part\">");
+	            out.println("<input type=\"submit\" name=\"keywordID\" value=" + id + "    Add Part>");
 	            out.println("</form>");
 	            out.println("</td>");
 	            out.println("</tr>");
