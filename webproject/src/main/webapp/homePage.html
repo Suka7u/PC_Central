@@ -11,7 +11,7 @@ nav {
     line-height:30px;
     background-color:#eeeeee;
     height:300px;
-    width:100px;
+    width:200px;
     float:left;
     padding:5px;	      
 }
@@ -27,9 +27,50 @@ footer {
     text-align:center;
     padding:5px;	 	 
 }
+#loginORlogout:link {
+	color: black;
+	text-decoration: none;
+}
+#loginORlogout:visited {
+	color: black;
+	text-decoration: none;
+}
+#loginORlogout:hover {
+	color: black;
+	text-decoration: none;
+}
+#loginORlogout:active {
+	color: black;
+	text-decoration: none;
+}
 </style>
 
 <script>
+	
+function checkForUsername() {
+	let username = document.cookie;
+	const myArray = username.split("=");
+	let word = myArray[1];
+	
+	const userWord = word.split(";");
+	let usernameWord = userWord[0];
+	
+	if (typeof word === "undefined") {
+		document.getElementById("loginORlogout").setAttribute("onclick", "");
+		document.getElementById("loginORlogout").setAttribute("href", "/webproject/loginOrSignUp.html");
+		document.getElementById("loginORlogout").innerHTML = "Login or Sign up";
+		//document.getElementById("loginOrSignUp").style.visibility = "visible";
+		//document.getElementById("logout").style.visibility = "hidden";
+	} else {
+		document.getElementById("loginORlogout").setAttribute("onclick", "logOut()");
+		document.getElementById("loginORlogout").setAttribute("href", "/webproject/homePage.html");
+		document.getElementById("loginORlogout").innerHTML = "Log Out";
+		//document.getElementById("loginOrSignUp").style.visibility = "hidden";
+		//document.getElementById("logout").style.visibility = "visible";
+	}
+	
+}
+
 function LoginCheck() {
 	let username = document.cookie;
 	const myArray = username.split("=");
@@ -38,14 +79,15 @@ function LoginCheck() {
 	const userWord = word.split(";");
 	let usernameWord = userWord[0];
 	
-	if(typeof word === "undefined"){
+	if (typeof word === "undefined") {
 		location.href = "/webproject/loginOrSignUp.html";
-		window.onload = alert("Please Login!");
-
+		// window.onload = alert("Please Login!");
+		document.getElementById("loginOrSignUp").style.visibility = "visible";
+		
 	} else {
-		window.onload = alert("You are signed in as: " + usernameWord);
+		// window.onload = alert("You are signed in as: " + usernameWord);
+		document.getElementById("loginOrSignUp").style.visibility = "visible";
 	}
-	
 	
 }
 
@@ -63,13 +105,35 @@ function savedBuildLoginCheck() {
 	
 	if(typeof word === "undefined"){
 		location.href = "/webproject/loginOrSignUp.html";
-		window.onload = alert("Please Login!");
+		// window.onload = alert("Please Login!");
 
 	} else {
 		//window.onload = alert("You are signed in as: " + usernameWord);
 		location.href = "/webproject/yourSavedBuilds.html";
 	}
 	
+}
+
+function allBuildsLoginCheck() {
+	let username = document.cookie;
+	const myArray = username.split("=");
+	let word = myArray[1];
+	
+	if(typeof word === "undefined"){
+		location.href = "/webproject/loginOrSignUp.html";
+	}
+	
+	const userWord = word.split(";");
+	let usernameWord = userWord[0];
+	
+	if(typeof word === "undefined"){
+		location.href = "/webproject/loginOrSignUp.html";
+		// window.onload = alert("Please Login!");
+
+	} else {
+		//window.onload = alert("You are signed in as: " + usernameWord);
+		location.href = "/webproject/allUserBuilds.html";
+	}
 	
 }
 
@@ -86,7 +150,6 @@ function logOut(){
 
 			document.cookie = ""+ cookieName + "= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
 			
-			
 		}
 		
 }
@@ -95,35 +158,38 @@ function logOut(){
 
 </head>
 
-<body>
+<body onload="checkForUsername()">
 <header>
-<h1> Search Parts </h1>
+<h1> PC Central </h1>
 </header>
 
 <nav>
-<a href="/webproject/choosePart.html">Back to Choose Part</a> <br>
-
-<a href="/webproject/homePage.html" onclick="logOut()">Log out!</a> <br>
-
-</nav>
 
 <section>
-	<h1>Home Page</h1>
 	
-	<a href="/webproject/loginOrSignUp.html">Login or Sign Up</a> <br>
+	<button><a href="/webproject/loginOrSignUp.html" onclick="" id="loginORlogout">Login or Sign up</a></button><p></p>
 	
-	<a href="/webproject/choosePart.html">Search for Parts</a> <br>
+	<form action="DisplaySavedUserBuilds" method="POST" on>
+		<input type="submit" name="keyword1" value="Your Saved Builds" onclick="savedBuildLoginCheck()">
+	</form>
 	
-	<button type="button" onclick="savedBuildLoginCheck()">Your Saved Builds</button><br>
+	<form action="DisplayAllBuilds" method="POST" on>
+		<input type="submit" name="keyword1" value="All Community Builds" onclick="allBuildsLoginCheck()">
+	</form>
 	
-	<a href="/webproject/completedBuilds.html">Completed Builds</a> <br>
+	<form action="CheckIfLoggedIn" method="POST" on>
+		<input type="submit" name="keyword1" value="Preset Builds" onclick="LoginCheck()">
+	</form>
 	
 	<form action="AddRowInUserBuildsTable" method="POST" on>
 		<input type="submit" name="keyword1" value="Create a New Build" onclick="LoginCheck()">
-
 	</form>
 
 </section>
+
+</nav>
+
+
 
 <!--
 <footer>

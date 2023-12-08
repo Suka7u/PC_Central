@@ -33,22 +33,24 @@ footer {
 <script>
 function AlertMessage() {
 	var checkValue = sessionStorage.getItem("checkValue");
-	if (checkValue === "1"){
+	if (checkValue == "1"){
 		window.onload = alert("Account successfully created!!!");
 	
 	} else {
 		window.onload = alert("Sorry! The username you entered is already taken. Please try again!!!");
 	}
 	
-	
 }
 
+/*
 function LoginAlert() {
 	var checkValue = sessionStorage.getItem("checkValue");
 	if (checkValue === "1"){
 		window.onload = alert("There is no account with this username.");
 	}
 }
+*/
+
 </script>
 
 </head>
@@ -69,7 +71,8 @@ function LoginAlert() {
 	<form action="LoginIfValid" method="POST">
 		<label>Login: </label>
 		<input type="text" name="username">
-		<input type="submit" name="submitUsername" value="Submit" onclick="LoginAlert()">
+		<!-- <input type="submit" name="submitUsername" value="Submit" onclick="LoginAlert()"> -->
+		<input type="submit" name="submitUsername" value="Submit">
 	</form>
 	
 	<label>Make an Account</label>

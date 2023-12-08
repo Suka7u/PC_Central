@@ -11,7 +11,7 @@ nav {
     line-height:30px;
     background-color:#eeeeee;
     height:300px;
-    width:100px;
+    width:200px;
     float:left;
     padding:5px;	      
 }
@@ -27,16 +27,229 @@ footer {
     text-align:center;
     padding:5px;	 	 
 }
+#loginORlogout:link {
+	color: black;
+	text-decoration: none;
+}
+#loginORlogout:visited {
+	color: black;
+	text-decoration: none;
+}
+#loginORlogout:hover {
+	color: black;
+	text-decoration: none;
+}
+#loginORlogout:active {
+	color: black;
+	text-decoration: none;
+}
+#backHome:link {
+	color: black;
+	text-decoration: none;
+}
+#backHome:visited {
+	color: black;
+	text-decoration: none;
+}
+#backHome:hover {
+	color: black;
+	text-decoration: none;
+}
+#backHome:active {
+	color: black;
+	text-decoration: none;
+}
 </style>
+
+<script>
+
+function onLoad() {
+	
+	let cookies = document.cookie;
+	let cookieArray = cookies.split(';');
+	for (let i = 0; i < cookieArray.length; i++) {
+		let cookie = cookieArray[i];
+		const myArray = cookie.split("=");
+		var word = myArray[0];
+		if (word.trim() == "cpu") {
+			document.getElementById("cpuPart").innerHTML = myArray[1];
+			
+		} else if (word.trim() == "cpucooler"){
+			document.getElementById("cpucoolerPart").innerHTML = myArray[1];
+			
+		} else if (word.trim() == "gpu"){
+			document.getElementById("gpuPart").innerHTML = myArray[1];
+			
+		} else if (word.trim() == "memory"){
+			document.getElementById("memoryPart").innerHTML = myArray[1];
+			
+		} else if (word.trim() == "motherboard"){
+			document.getElementById("motherboardPart").innerHTML = myArray[1];
+			
+		} else if (word.trim() == "storage"){
+			document.getElementById("storagePart").innerHTML = myArray[1];
+			
+		} else if (word.trim() == "powersupply"){
+			document.getElementById("powerSupplyPart").innerHTML = myArray[1];
+			
+		} else if (word.trim() == "case"){
+			document.getElementById("casePart").innerHTML = myArray[1];
+			
+		} else if (word.trim() == "monitor"){
+			document.getElementById("monitorPart").innerHTML = myArray[1];
+			
+		} 
+		
+		
+	}
+	
+	checkForUsername();
+
+}
+	
+function checkForUsername() {
+	let username = document.cookie;
+	const myArray = username.split("=");
+	let word = myArray[1];
+	
+	const userWord = word.split(";");
+	let usernameWord = userWord[0];
+	
+	if (typeof word === "undefined") {
+		document.getElementById("loginORlogout").setAttribute("onclick", "");
+		document.getElementById("loginORlogout").setAttribute("href", "/webproject/loginOrSignUp.html");
+		document.getElementById("loginORlogout").innerHTML = "Login or Sign up";
+		//document.getElementById("loginOrSignUp").style.visibility = "visible";
+		//document.getElementById("logout").style.visibility = "hidden";
+	} else {
+		document.getElementById("loginORlogout").setAttribute("onclick", "logOut()");
+		document.getElementById("loginORlogout").setAttribute("href", "/webproject/homePage.html");
+		document.getElementById("loginORlogout").innerHTML = "Log Out";
+		//document.getElementById("loginOrSignUp").style.visibility = "hidden";
+		//document.getElementById("logout").style.visibility = "visible";
+	}
+	
+}
+
+function LoginCheck() {
+	let username = document.cookie;
+	const myArray = username.split("=");
+	let word = myArray[1];
+	
+	const userWord = word.split(";");
+	let usernameWord = userWord[0];
+	
+	if (typeof word === "undefined") {
+		location.href = "/webproject/loginOrSignUp.html";
+		// window.onload = alert("Please Login!");
+		document.getElementById("loginOrSignUp").style.visibility = "visible";
+		
+	} else {
+		// window.onload = alert("You are signed in as: " + usernameWord);
+		document.getElementById("loginOrSignUp").style.visibility = "visible";
+	}
+	
+}
+
+function savedBuildLoginCheck() {
+	let username = document.cookie;
+	const myArray = username.split("=");
+	let word = myArray[1];
+	
+	if(typeof word === "undefined"){
+		location.href = "/webproject/loginOrSignUp.html";
+	}
+	
+	const userWord = word.split(";");
+	let usernameWord = userWord[0];
+	
+	if(typeof word === "undefined"){
+		location.href = "/webproject/loginOrSignUp.html";
+		// window.onload = alert("Please Login!");
+
+	} else {
+		//window.onload = alert("You are signed in as: " + usernameWord);
+		location.href = "/webproject/yourSavedBuilds.html";
+	}
+	
+}
+
+function allBuildsLoginCheck() {
+	let username = document.cookie;
+	const myArray = username.split("=");
+	let word = myArray[1];
+	
+	if(typeof word === "undefined"){
+		location.href = "/webproject/loginOrSignUp.html";
+	}
+	
+	const userWord = word.split(";");
+	let usernameWord = userWord[0];
+	
+	if(typeof word === "undefined"){
+		location.href = "/webproject/loginOrSignUp.html";
+		// window.onload = alert("Please Login!");
+
+	} else {
+		//window.onload = alert("You are signed in as: " + usernameWord);
+		location.href = "/webproject/allUserBuilds.html";
+	}
+	
+}
+
+function logOut(){
+		let allCookies = document.cookie;
+		let allCookieArray = allCookies.split(';');
+		
+		for (let i = 0; i < allCookieArray.length; i++) {
+			let eachCookie = allCookieArray[i];
+			const cookieNameArray = eachCookie.split("=");
+			var cookieName = cookieNameArray[0];
+			//console.log(cookieName);
+			
+
+			document.cookie = ""+ cookieName + "= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+			
+		}
+		
+}
+	
+</script>
+
 </head>
 
-<body>
+<body onload = "onLoad()">
 <header>
-<h1> Search Parts </h1>
+<h1> Search for Power Supply </h1>
 </header>
 
 <nav>
-<a href="/webproject/choosePart.html">Back to Choose Part</a> <br>
+
+<section>
+	
+	<button><a href="/webproject/loginOrSignUp.html" onclick="" id="loginORlogout">Login or Sign up</a></button><p></p>
+	
+	<button><a href="/webproject/homePage.html" id="backHome">Back to Home Page</a></button><p></p>
+	
+	<form action="DisplaySavedUserBuilds" method="POST" on>
+		<input type="submit" name="keyword1" value="Your Saved Builds" onclick="savedBuildLoginCheck()">
+	</form>
+	
+	<form action="DisplayAllBuilds" method="POST" on>
+		<input type="submit" name="keyword1" value="All Community Builds" onclick="allBuildsLoginCheck()">
+	</form>
+	
+	<form action="CheckIfLoggedIn" method="POST" on>
+		<input type="submit" name="keyword1" value="Preset Builds" onclick="LoginCheck()">
+	</form>
+	
+	<form action="AddRowInUserBuildsTable" method="POST" on>
+		<input type="submit" name="keyword1" value="Create a New Build" onclick="LoginCheck()">
+
+	</form>
+
+</section>
+
 </nav>
 
 <section>

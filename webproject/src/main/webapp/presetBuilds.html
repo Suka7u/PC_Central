@@ -27,6 +27,14 @@ footer {
     text-align:center;
     padding:5px;	 	 
 }
+table {
+	border-collapse: collapse;
+}
+td, th {
+	border: 1px solid black;
+	text-align: left;
+	padding: 10px;
+}
 #loginORlogout:link {
 	color: black;
 	text-decoration: none;
@@ -216,11 +224,12 @@ function logOut(){
 	
 </script>
 
+
 </head>
 
 <body onload = "onLoad()">
 <header>
-<h1> Search for Memory </h1>
+<h1> Preset Builds </h1>
 </header>
 
 <nav>
@@ -239,10 +248,6 @@ function logOut(){
 		<input type="submit" name="keyword1" value="All Community Builds" onclick="allBuildsLoginCheck()">
 	</form>
 	
-	<form action="CheckIfLoggedIn" method="POST" on>
-		<input type="submit" name="keyword1" value="Preset Builds" onclick="LoginCheck()">
-	</form>
-	
 	<form action="AddRowInUserBuildsTable" method="POST" on>
 		<input type="submit" name="keyword1" value="Create a New Build" onclick="LoginCheck()">
 
@@ -253,33 +258,21 @@ function logOut(){
 </nav>
 
 <section>
-	<h1>User Input</h1>
-	
-	<form action="MemorySearch" method="POST">
-		Choose by Size
-	  	<input type="checkbox" name="keyword1" value="16">
-	  	<label> 16GB</label><br>
-	  	<input type="checkbox" name="keyword2" value="32">
-	  	<label> 32GB</label><br>
-	  	<input type="checkbox" name="keyword3" value="64">
-	  	<label> 64GB</label><br>
-	  	<input type="submit" value="Submit">
-	  	
-	  	<div class="slidecontainer">
-			<p>Choose By Price: $<span id="demo"></span>.00</p>
-		  	<input type="range" name="keywordPrice" min="0" max="300" value="150" step="10" class="slider" id="myRange">
-		</div>
-		
-		<script>
-			var slider = document.getElementById("myRange");
-			var output = document.getElementById("demo");
-			output.innerHTML = slider.value;
-		
-			slider.oninput = function() {
-		  	output.innerHTML = this.value;
-			}
-		</script>
-	</form>
+	<table>
+		<th>Build Type</th>
+		<th>CPU</th>
+		<th>CPU Cooler</th>
+		<th>GPU</th>
+		<th>Memory</th>
+		<th>Motherboard</th>
+		<th>Storage</th>
+		<th>Power Supply</th>
+		<th>Case</th>
+		<th>Monitor</th>
+		<tr><td>Gaming Build</td><td>Gaming CPU</td><td>Gaming CPU Cooler</td><td>Gaming GPU</td><td>Gaming Memory</td><td>Gaming Motherboard</td><td>Gaming Storage</td><td>Gaming Power Supply</td><td>Gaming Case</td><td>Gaming Monitor</td></tr>
+		<tr><td>Production Build</td><td>Production CPU</td><td>Production CPU Cooler</td><td>Production GPU</td><td>Production Memory</td><td>Production Motherboard</td><td>Production Storage</td><td>Production Power Supply</td><td>Production Case</td><td>Production Monitor</td></tr>
+		<tr><td>Streaming Build</td><td>Streaming CPU</td><td>Streaming CPU Cooler</td><td>Streaming GPU</td><td>Streaming Memory</td><td>Streaming Motherboard</td><td>Streaming Storage</td><td>Streaming Power Supply</td><td>Streaming Case</td><td>Streaming Monitor</td></tr>
+	</table>
 
 </section>
 

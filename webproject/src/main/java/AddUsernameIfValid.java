@@ -54,8 +54,9 @@ public class AddUsernameIfValid extends HttpServlet {
              
              if (username.equals(userNameInTable)) {
             	 checkVal = 1; // username exists in the table
+            	 break;
              } else {
-            	 continue;
+            	 checkVal = 0; // username dne in the table
              }
          }
          
