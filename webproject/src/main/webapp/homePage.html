@@ -48,6 +48,48 @@ function LoginCheck() {
 	
 	
 }
+
+function savedBuildLoginCheck() {
+	let username = document.cookie;
+	const myArray = username.split("=");
+	let word = myArray[1];
+	
+	if(typeof word === "undefined"){
+		location.href = "/webproject/loginOrSignUp.html";
+	}
+	
+	const userWord = word.split(";");
+	let usernameWord = userWord[0];
+	
+	if(typeof word === "undefined"){
+		location.href = "/webproject/loginOrSignUp.html";
+		window.onload = alert("Please Login!");
+
+	} else {
+		//window.onload = alert("You are signed in as: " + usernameWord);
+		location.href = "/webproject/yourSavedBuilds.html";
+	}
+	
+	
+}
+
+function logOut(){
+		let allCookies = document.cookie;
+		let allCookieArray = allCookies.split(';');
+		
+		for (let i = 0; i < allCookieArray.length; i++) {
+			let eachCookie = allCookieArray[i];
+			const cookieNameArray = eachCookie.split("=");
+			var cookieName = cookieNameArray[0];
+			//console.log(cookieName);
+			
+
+			document.cookie = ""+ cookieName + "= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+			
+			
+		}
+		
+}
 	
 </script>
 
@@ -60,15 +102,22 @@ function LoginCheck() {
 
 <nav>
 <a href="/webproject/choosePart.html">Back to Choose Part</a> <br>
+
+<a href="/webproject/homePage.html" onclick="logOut()">Log out!</a> <br>
+
 </nav>
 
 <section>
 	<h1>Home Page</h1>
 	
 	<a href="/webproject/loginOrSignUp.html">Login or Sign Up</a> <br>
+	
 	<a href="/webproject/choosePart.html">Search for Parts</a> <br>
-	<a href="/webproject/yourSavedBuilds.html">Your Saved Builds</a> <br>
+	
+	<button type="button" onclick="savedBuildLoginCheck()">Your Saved Builds</button><br>
+	
 	<a href="/webproject/completedBuilds.html">Completed Builds</a> <br>
+	
 	<form action="AddRowInUserBuildsTable" method="POST" on>
 		<input type="submit" name="keyword1" value="Create a New Build" onclick="LoginCheck()">
 

@@ -66,8 +66,51 @@ footer {
 				document.getElementById("monitorPart").innerHTML = myArray[1];
 				
 			} 
+			
+			
 		}
+	
 	}
+	
+	function closeCookies(){
+		let allCookies = document.cookie;
+		let allCookieArray = allCookies.split(';');
+		
+		for (let i = 0; i < allCookieArray.length; i++) {
+			let eachCookie = allCookieArray[i];
+			const cookieNameArray = eachCookie.split("=");
+			var cookieName = cookieNameArray[0];
+			//console.log(cookieName);
+			
+			if(cookieName.trim() != "username"){
+				document.cookie = ""+ cookieName + "= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+			}
+			
+		}
+		
+		location.href = "/webproject/homePage.html";
+		
+	}
+	
+	function resetBuild(){
+		let allCookies = document.cookie;
+		let allCookieArray = allCookies.split(';');
+		
+		for (let i = 0; i < allCookieArray.length; i++) {
+			let eachCookie = allCookieArray[i];
+			const cookieNameArray = eachCookie.split("=");
+			var cookieName = cookieNameArray[0];
+			//console.log(cookieName);
+			
+			if(cookieName.trim() != "username" && cookieName.trim() != "ID"){
+				document.cookie = ""+ cookieName + "= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+			}
+			
+		}
+		
+		location.reload();
+		
+	}	
 </script>
 	
 </head>
@@ -113,7 +156,11 @@ footer {
 		
 		
 	</form>
+	
+	<button type="button" onclick="closeCookies()">Save Build!</button>
 
+	<button type="button" onclick="resetBuild()">Reset Build!</button>
+	
 </section>
 
 <!--
