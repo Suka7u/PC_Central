@@ -70,9 +70,9 @@ public class LoginIfValid extends HttpServlet {
 			            
 						"var checkValue = \"1\"\n" + //
 						"sessionStorage.setItem(\"checkValue\", checkValue)\n" + //
-			            
-			            // "var userName = " + username + " \n" + //
-			            // "sessionStorage.setItem(\"userName\", userName)\n" + //
+						
+			            "window.onload = alert(\"Successfully logged in!\");\n" + //
+
 			            "</script>\n" + //
 
 			            "<script>location.href = \"/webproject/homePage.html\"</script>\n" + //
@@ -97,6 +97,9 @@ public class LoginIfValid extends HttpServlet {
 			            
 						"<script>var checkValue = \"0\"\n" + //
 						"sessionStorage.setItem(\"checkValue\", checkValue)\n" + //
+						
+						"window.onload = alert(\"There is no account with this username.\");\n" + //
+						
 						"</script>\n" + //
 
 			            "<script>location.href = \"/webproject/loginOrSignUp.html\"</script>\n" + //

@@ -226,9 +226,6 @@ public class DisplayAllBuilds extends HttpServlet {
     		  "<form action=\"CheckIfLoggedIn\" method=\"POST\" on>\n" + //
     		  "<input type=\"submit\" name=\"keyword1\" value=\"Preset Builds\" onclick=\"LoginCheck()\">\n" + //
     		  "</form>\n" + //
-    		  "<form action=\"AddRowInUserBuildsTable\" method=\"POST\" on>\n" + //
-    		  "<input type=\"submit\" name=\"keyword1\" value=\"Create a New Build\" onclick=\"LoginCheck()\">\n" + //
-    		  "</form>\n" + //
     		  "</section>\n" + //
     		  "</nav>\n");
       

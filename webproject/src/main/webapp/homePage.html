@@ -2,8 +2,9 @@
 <head>
 <style>
 header {
-    background-color:black;
-    color:white;
+    /*background-color:black;*/
+    background: linear-gradient(270deg, #27EB41, #29D540, #24B237, #168925,  #24B237, #29D540, #27EB41);
+    color:red;
     text-align:center;
     padding:5px;	 
 }
@@ -79,17 +80,37 @@ function LoginCheck() {
 	const userWord = word.split(";");
 	let usernameWord = userWord[0];
 	
+	
+	
 	if (typeof word === "undefined") {
 		location.href = "/webproject/loginOrSignUp.html";
 		// window.onload = alert("Please Login!");
 		document.getElementById("loginOrSignUp").style.visibility = "visible";
 		
 	} else {
-		// window.onload = alert("You are signed in as: " + usernameWord);
+		resetBuild();
 		document.getElementById("loginOrSignUp").style.visibility = "visible";
+		
 	}
 	
 }
+
+function resetBuild(){
+		let allCookies = document.cookie;
+		let allCookieArray = allCookies.split(';');
+		
+		for (let i = 0; i < allCookieArray.length; i++) {
+			let eachCookie = allCookieArray[i];
+			const cookieNameArray = eachCookie.split("=");
+			var cookieName = cookieNameArray[0];
+			
+			if (cookieName.trim() != "username") {
+				document.cookie = ""+ cookieName + "= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+			}
+			
+		}
+
+	}
 
 function savedBuildLoginCheck() {
 	let username = document.cookie;
@@ -153,6 +174,26 @@ function logOut(){
 		}
 		
 }
+
+function createANew(){
+		let allCookies = document.cookie;
+		let allCookieArray = allCookies.split(';');
+		
+		for (let i = 0; i < allCookieArray.length; i++) {
+			let eachCookie = allCookieArray[i];
+			const cookieNameArray = eachCookie.split("=");
+			var cookieName = cookieNameArray[0];
+			//console.log(cookieName);
+			
+			if(cookieName.trim() != "username" && cookieName.trim() != "ID"){
+				document.cookie = ""+ cookieName + "= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+			}
+			
+		}
+		
+		location.reload();
+		
+	}
 	
 </script>
 
@@ -189,7 +230,11 @@ function logOut(){
 
 </nav>
 
-
+<h1>Contributors</h1>
+<h3>Graham Bezanson</h3>
+<h3>Sanjay Giri Prakash</h3>
+<h3>Tom Nguyen</h3>
+<h3>Travis Swartzendruber</h3>
 
 <!--
 <footer>

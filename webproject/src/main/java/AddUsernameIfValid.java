@@ -73,16 +73,27 @@ public class AddUsernameIfValid extends HttpServlet {
     		 out.println(docType + //
 		    		 "<html>\n" + //
 			            "<head><title>" + title + "</title>\n" + //
+			            "<style>\n" + //
+			            //"body {\n" + //
+			            //"background-image:url(\"markHenry.jpg\");\n" + //
+			            //"}\n" + //
+			            "</style>\n" + //
 			            "</head>\n" + //
 			            "<body>\n" + //
 			            "<script>\n" + //
 			            "var checkValue = \"1\"\n" + //
 			            "sessionStorage.setItem(\"checkValue\", checkValue)\n" + //
+			            "window.onload = alert(\"Sorry! The username you entered is already taken. Please try again!!!\");\n" + //
 			            "</script>\n" + //
-
+			            
+			            //"<script>window.setTimeout(redirect, 200);\n" + //
+			            //"function redirect() {\n" + //
+			            //"location.href = \"/webproject/loginOrSignUp.html\";\n" + //
+			            //"}\n" + //
+			            //"</script>\n" + //
 			            "<script>location.href = \"/webproject/loginOrSignUp.html\"</script>\n" + //
 
-		        	"</body>\n" + //
+		        		"</body>\n" + //
 			            "</html>");
              		
          } else { // username DNE in the table
@@ -113,6 +124,7 @@ public class AddUsernameIfValid extends HttpServlet {
 			            "<script>\n" + //
 			            "var checkValue = \"0\"\n" + //
 			            "sessionStorage.setItem(\"checkValue\", checkValue)\n" + //
+			            "window.onload = alert(\"Account successfully created!!!\");\n" + //
 			            "</script>\n" + //
 
 			            "<script>location.href = \"/webproject/loginOrSignUp.html\"</script>\n" + //

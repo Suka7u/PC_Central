@@ -31,6 +31,7 @@ footer {
 </style>
 
 <script>
+	/*
 function AlertMessage() {
 	var checkValue = sessionStorage.getItem("checkValue");
 	if (checkValue == "1"){
@@ -41,15 +42,19 @@ function AlertMessage() {
 	}
 	
 }
+*/
 
 /*
 function LoginAlert() {
 	var checkValue = sessionStorage.getItem("checkValue");
-	if (checkValue === "1"){
+	if (checkValue.trim() == "0"){
 		window.onload = alert("There is no account with this username.");
+	} else {
+		window.onload = alert("Successfully logged in!");
 	}
 }
 */
+
 
 </script>
 
@@ -65,7 +70,7 @@ function LoginAlert() {
 </nav>
 
 <section>
-	<h1>Home Page</h1>
+	<!-- <h1>Home Page</h1> -->
 	
 	<label>Already have an account?</label>
 	<form action="LoginIfValid" method="POST">
@@ -79,7 +84,8 @@ function LoginAlert() {
 	<form action="AddUsernameIfValid" method="POST">
 		<label>Sign Up: </label>
 		<input type="text" name="username">
-		<input type="submit" name="submitUsername" value="Submit" onclick="AlertMessage()">
+		<!-- <input type="submit" name="submitUsername" value="Submit" onclick="AlertMessage()"> -->
+		<input type="submit" name="submitUsername" value="Submit">
 	</form>
 
 </section>
