@@ -29,7 +29,7 @@ public class CheckIfLoggedIn extends HttpServlet {
     	  		  "<html>\n" + //
     	            "<body>\n" + //
     	            "<script>\n" + //
-    	            "alert(\"You need to login before you can use this resource.\");\n" + //
+    	            // "alert(\"You need to login before you can use this resource.\");\n" + //
     	            "location.href = \"/webproject/loginOrSignUp.html\"\n" + //
     	            "</script>\n");
       } else {

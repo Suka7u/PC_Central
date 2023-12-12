@@ -83,7 +83,7 @@ public class AddUsernameIfValid extends HttpServlet {
 			            "<script>\n" + //
 			            "var checkValue = \"1\"\n" + //
 			            "sessionStorage.setItem(\"checkValue\", checkValue)\n" + //
-			            "window.onload = alert(\"Sorry! The username you entered is already taken. Please try again!!!\");\n" + //
+			            // "window.onload = alert(\"Sorry! The username you entered is already taken. Please try again!!!\");\n" + //
 			            "</script>\n" + //
 			            
 			            //"<script>window.setTimeout(redirect, 200);\n" + //
@@ -124,7 +124,7 @@ public class AddUsernameIfValid extends HttpServlet {
 			            "<script>\n" + //
 			            "var checkValue = \"0\"\n" + //
 			            "sessionStorage.setItem(\"checkValue\", checkValue)\n" + //
-			            "window.onload = alert(\"Account successfully created!!!\");\n" + //
+			            // "window.onload = alert(\"Account successfully created!!!\");\n" + //
 			            "</script>\n" + //
 
 			            "<script>location.href = \"/webproject/loginOrSignUp.html\"</script>\n" + //

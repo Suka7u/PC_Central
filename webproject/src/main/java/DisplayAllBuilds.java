@@ -136,11 +136,11 @@ public class DisplayAllBuilds extends HttpServlet {
               "	\n" + //
               "	if (typeof word === \"undefined\") {\n" + //
               "		location.href = \"/webproject/loginOrSignUp.html\";\n" + //
-              "		// window.onload = alert(\"Please Login!\");\n" + //
+              // "		// window.onload = alert(\"Please Login!\");\n" + //
               "		document.getElementById(\"loginOrSignUp\").style.visibility = \"visible\";\n" + //
               "		\n" + //
               "	} else {\n" + //
-              "		// window.onload = alert(\"You are signed in as: \" + usernameWord);\n" + //
+              // "		// window.onload = alert(\"You are signed in as: \" + usernameWord);\n" + //
               "		document.getElementById(\"loginOrSignUp\").style.visibility = \"visible\";\n" + //
               "	}\n" + //
               "	\n" + //
@@ -160,10 +160,10 @@ public class DisplayAllBuilds extends HttpServlet {
               "	\n" + //
               "	if(typeof word === \"undefined\"){\n" + //
               "		location.href = \"/webproject/loginOrSignUp.html\";\n" + //
-              "		// window.onload = alert(\"Please Login!\");\n" + //
+              // "		// window.onload = alert(\"Please Login!\");\n" + //
               "\n" + //
               "	} else {\n" + //
-              "		//window.onload = alert(\"You are signed in as: \" + usernameWord);\n" + //
+              // "		//window.onload = alert(\"You are signed in as: \" + usernameWord);\n" + //
               "		location.href = \"/webproject/yourSavedBuilds.html\";\n" + //
               "	}\n" + //
               "	\n" + //
@@ -183,10 +183,10 @@ public class DisplayAllBuilds extends HttpServlet {
               "	\n" + //
               "	if(typeof word === \"undefined\"){\n" + //
               "		location.href = \"/webproject/loginOrSignUp.html\";\n" + //
-              "		// window.onload = alert(\"Please Login!\");\n" + //
+              // "		// window.onload = alert(\"Please Login!\");\n" + //
               "\n" + //
               "	} else {\n" + //
-              "		//window.onload = alert(\"You are signed in as: \" + usernameWord);\n" + //
+              // "		//window.onload = alert(\"You are signed in as: \" + usernameWord);\n" + //
               "		location.href = \"/webproject/allUserBuilds.html\";\n" + //
               "	}\n" + //
               "	\n" + //

@@ -71,7 +71,7 @@ public class LoginIfValid extends HttpServlet {
 						"var checkValue = \"1\"\n" + //
 						"sessionStorage.setItem(\"checkValue\", checkValue)\n" + //
 						
-			            "window.onload = alert(\"Successfully logged in!\");\n" + //
+			            // "window.onload = alert(\"Successfully logged in!\");\n" + //
 
 			            "</script>\n" + //
 
@@ -98,7 +98,7 @@ public class LoginIfValid extends HttpServlet {
 						"<script>var checkValue = \"0\"\n" + //
 						"sessionStorage.setItem(\"checkValue\", checkValue)\n" + //
 						
-						"window.onload = alert(\"There is no account with this username.\");\n" + //
+						// "window.onload = alert(\"There is no account with this username.\");\n" + //
 						
 						"</script>\n" + //
 
