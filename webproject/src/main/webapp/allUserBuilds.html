@@ -1,0 +1,82 @@
+<html>
+<head>
+<style>
+header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;	 
+}
+nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:300px;
+    width:100px;
+    float:left;
+    padding:5px;	      
+}
+section {
+    width:350px;
+    float:left;
+    padding:10px;	 	 
+}
+footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;	 	 
+}
+</style>
+
+<script>
+
+function logOut(){
+		let allCookies = document.cookie;
+		let allCookieArray = allCookies.split(';');
+		
+		for (let i = 0; i < allCookieArray.length; i++) {
+			let eachCookie = allCookieArray[i];
+			const cookieNameArray = eachCookie.split("=");
+			var cookieName = cookieNameArray[0];
+			//console.log(cookieName);
+			
+
+			document.cookie = ""+ cookieName + "= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+			
+			
+		}
+		
+}
+	
+</script>
+
+</head>
+
+<body>
+<header>
+<h1> Search Parts </h1>
+</header>
+
+<nav>
+<a href="/webproject/choosePart.html">Back to Choose Part</a> <br>
+
+<a href="/webproject/homePage.html" onclick="logOut()">Log out!</a> <br>
+
+</nav>
+
+<section>
+	<h1>All User Builds!</h1>
+	
+
+
+</section>
+
+<!--
+<footer>
+Copyright
+</footer>
+-->
+
+</body>
+</html>
