@@ -1,4 +1,3 @@
 Group project for introduction to software engineering.
-Application: http://ec2-3-139-67-4.us-east-2.compute.amazonaws.com:8080/webproject/homePage.html
-VCS: https://github.com/tswartzendruber/PC_Central_workspace4830/tree/master
-PMS: https://trello.com/b/1drTgyVA
+Video: 
+https://unomaha.yuja.com/V/Video?v=9324387&node=39794325&a=42661518&autoplay=1
